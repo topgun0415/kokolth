@@ -1,0 +1,17 @@
+services:
+  app:
+    container_name: 'pregnancy-baby-consulting'
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '4030:3000'
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - ../resource:/resource
+      - /resource/node_modules
+      - /resource/.next
+    stdin_open: true
+    tty: true

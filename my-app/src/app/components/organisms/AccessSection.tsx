@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AccessCard from '../molecules/AccessCard';
 
 export const AccessSection: React.FC = () => {

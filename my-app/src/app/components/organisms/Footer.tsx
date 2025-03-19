@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Typography } from '../atoms/Typography';
 import QnAButton from '../atoms/QnAButton';
@@ -46,7 +45,7 @@ export const Footer: React.FC = () => {
               </Typography>
               <br />
               <Typography variant='caption' color='gray' className='opacity-70'>
-                Designed with ❤️ by kokolth team
+                Designed by kokolth team
               </Typography>
             </div>
           </div>

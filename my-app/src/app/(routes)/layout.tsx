@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Head from 'next/head'; // Import Head component for managing the head section
 import '../(routes)/globals.css';
 import Header from '../components/organisms/Header';
 import Footer from '../components/organisms/Footer';
@@ -16,13 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <head>
-        <Head>
-          <title>{metadata.title}</title>
-          <meta name='description' content={metadata.description} />
-        </Head>
-      </head>
+    <html lang='jp'>
       <body>
         <Header />
         {children}

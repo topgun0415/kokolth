@@ -1,7 +1,13 @@
-// src/components/atoms/Typography.tsx
 import React from 'react';
 
-type TypographyVariant =
+// Define the allowed types for props
+export type TypographyFont =
+  | 'light'
+  | 'medium'
+  | 'heavy'
+  | 'josefin'
+  | 'josefinItalic';
+export type TypographyVariant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -10,8 +16,8 @@ type TypographyVariant =
   | 'subtitle'
   | 'body'
   | 'caption';
-type TypographyWeight = 'light' | 'regular' | 'medium' | 'bold';
-type TypographyColor =
+export type TypographyWeight = 'light' | 'regular' | 'medium' | 'bold';
+export type TypographyColor =
   | 'primary'
   | 'secondary'
   | 'accent'
@@ -23,6 +29,7 @@ interface TypographyProps {
   variant?: TypographyVariant;
   weight?: TypographyWeight;
   color?: TypographyColor;
+  font?: TypographyFont;
   className?: string;
   children: React.ReactNode;
 }
@@ -31,6 +38,7 @@ export const Typography: React.FC<TypographyProps> = ({
   variant = 'body',
   weight = 'regular',
   color = 'black',
+  font = 'medium',
   className = '',
   children,
 }) => {
@@ -91,64 +99,43 @@ export const Typography: React.FC<TypographyProps> = ({
     }
   };
 
+  const getFontStyles = (): string => {
+    switch (font) {
+      case 'light':
+        return 'font-[GenJyuuGothicXMonospaceLight]';
+      case 'medium':
+        return 'font-[GenJyuuGothicXMonospaceMedium]';
+      case 'heavy':
+        return 'font-[GenJyuuGothicXMonospaceHeavy]';
+      case 'josefin':
+        return 'font-[JosefinSans-VariableFont]';
+      case 'josefinItalic':
+        return 'font-[JosefinSans-Italic-Variable]';
+      default:
+        return '';
+    }
+  };
+
+  const classNames = `${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${getFontStyles()} ${className}`;
+
   const Element = () => {
     switch (variant) {
       case 'h1':
-        return (
-          <h1
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </h1>
-        );
+        return <h1 className={classNames}>{children}</h1>;
       case 'h2':
-        return (
-          <h2
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </h2>
-        );
+        return <h2 className={classNames}>{children}</h2>;
       case 'h3':
-        return (
-          <h3
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </h3>
-        );
+        return <h3 className={classNames}>{children}</h3>;
       case 'h4':
-        return (
-          <h4
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </h4>
-        );
+        return <h4 className={classNames}>{children}</h4>;
       case 'h5':
-        return (
-          <h5
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </h5>
-        );
+        return <h5 className={classNames}>{children}</h5>;
       case 'subtitle':
-        return (
-          <p
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </p>
-        );
+        return <p className={classNames}>{children}</p>;
       case 'caption':
-        return (
-          <span
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </span>
-        );
+        return <span className={classNames}>{children}</span>;
       default:
-        return (
-          <p
-            className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}>
-            {children}
-          </p>
-        );
+        return <p className={classNames}>{children}</p>;
     }
   };
 

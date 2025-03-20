@@ -11,7 +11,7 @@ interface FooterSocialBarProps {
 const FooterSocialBar: React.FC<FooterSocialBarProps> = () => {
   return (
     <>
-      <div className='flex justify-left gap-4 '>
+      <div className='flex justify-left gap-4 mt-8'>
         <InstagramCircleBtn href='https://instagram.com/' />
         <FacebookCirclBtnProps href='https://facebook.com/' />
         <TwitterCircleBtn href='https://facebook.com/' />

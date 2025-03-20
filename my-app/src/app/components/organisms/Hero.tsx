@@ -48,27 +48,70 @@ export const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
 
       {/* Kokolth */}
       <div className='relative z-10 text-center px-4 max-w-4xl'>
-        <Typography variant='h1' weight='bold' color='white' className='mb-4'>
+        <Typography
+          variant='h1'
+          weight='regular'
+          color='white'
+          font='josefin'
+          className=''>
           {title}
         </Typography>
-        <Typography variant='subtitle' color='white' className='mb-8'>
+        <Typography
+          variant='h3'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className='mb-2'>
           {subtitle}
         </Typography>
-      </div>
-
-      {/* Additional Left-Aligned Text */}
-      <div className='absolute left-4 bottom-3 z-10 text-white text-[4.5833333vw] leading-[1.2] tracking-[0.08em]'>
-        <Typography variant='h2' color='white' className='mb-8'>
+        <Typography
+          variant='h4'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className='mb-10'>
+          メールカウンセリングルーム
+        </Typography>
+        <br />
+        <Typography
+          variant='subtitle'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className=''>
           高齢出産
         </Typography>
-        <Typography variant='h2' color='white' className='mb-8'>
-          妊活中 &amp;
+        <Typography
+          variant='subtitle'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className=''>
+          妊活中
         </Typography>
-        <Typography variant='h2' color='white' className='mb-8'>
-          高齢出産 &amp;
+        <Typography
+          variant='subtitle'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className=''>
+          妊娠中
         </Typography>
-        <Typography variant='h2' color='white' className='mb-8'>
-          高齢出産について
+        <Typography
+          variant='subtitle'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className=''>
+          高齢育児
+        </Typography>
+        <Typography
+          variant='subtitle'
+          weight='medium'
+          color='white'
+          font='josefin'
+          className=''>
+          夫婦関係について
         </Typography>
       </div>
     </section>

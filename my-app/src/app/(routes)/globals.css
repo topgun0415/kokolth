@@ -10,13 +10,46 @@
   --light-background: #f9fafb;
 }
 
+@font-face {
+  font-family: 'GenJyuuGothicXMonospaceLight';
+  src: url('/fonts/Gen Jyuu Gothic X Monospace Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GenJyuuGothicXMonospaceMedium';
+  src: url('/fonts/Gen Jyuu Gothic X Monospace Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GenJyuuGothicXMonospaceHeavy';
+  src: url('/fonts/Gen Jyuu Gothic X Monospace Heavy.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinSans-Italic-Variable';
+  src: url('/fonts/JosefinSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinSans-VariableFont';
+  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
 }

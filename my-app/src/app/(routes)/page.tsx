@@ -1,7 +1,5 @@
-// src/pages/index.tsx
 import type { NextPage } from 'next';
 import { Hero } from '../components/organisms/Hero';
-import { AccessSection } from '../components/organisms/AccessSection';
 import { MenuSection } from '../components/organisms/MenuSection';
 import { Typography } from '../components/atoms/Typography';
 import Image from 'next/image';
@@ -10,28 +8,35 @@ import { Button } from '../components/atoms/Button';
 const Page: NextPage = () => {
   return (
     <>
-      <Hero title='Kokolth' subtitle='Male counseling room' />
+      <Hero title='KOKOLTH' subtitle='mail counseling room' />
 
       {/* コンセプト SECTION */}
       <section className='py-16 bg-white'>
         <div className='container mx-auto px-4'>
-          <div className='flex justify-between'>
-            <div className='text-left mb-5'>
+          <div className='flex flex-col-reverse justify-between items-center text-center lg:flex-row lg:text-left lg:items-start'>
+            <div className='mb-5 max-w-2xl'>
               <Typography
                 variant='h2'
-                weight='regular'
+                weight='medium'
                 color='primary'
-                className=''>
+                font='josefin'>
                 ABOUT US
               </Typography>
-              <Typography variant='subtitle' color='gray' className='max-w-2xl'>
+              <Typography
+                variant='subtitle'
+                weight='medium'
+                color='primary'
+                font='josefin'
+                className='max-w-2xl'>
                 カウンセラーよりご挨拶
               </Typography>
               <br />
               <Typography
                 variant='caption'
-                color='gray'
-                className='max-w-2xl mx-auto'>
+                weight='medium'
+                color='primary'
+                font='josefin'
+                className='max-w-2xl'>
                 はじめまして！ <br />
                 管理栄養士、心理カウンセラーの石松寿子と申します。
                 <br />
@@ -72,75 +77,44 @@ const Page: NextPage = () => {
                 <br />
                 皆様のお気持ちがすっきりして、爽快な気分で生きていかれますよう全力で応援いたします。
               </Typography>
+              <br />
+              <Button variant='primary' size='md' className='mt-5'>
+                詳しく見る
+              </Button>
             </div>
-            <div className=''>
-              <Image src='/images/child1.png' alt='' width={500} height={240} />
+
+            {/* 이미지 영역 */}
+            <div className='mb-6 lg:mb-0'>
+              <Image
+                src='/images/child1.png'
+                alt='Counselor'
+                width={500}
+                height={240}
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* メニュー SECTION */}
-      <section className='py-16 bg-gray-50'>
+      <section className='py-16 bg-gray-100'>
         <div className='container mx-auto px-4'>
           <div className='text-left mb-12'>
             <div className='flex justify-baseline items-baseline'>
               <Typography
                 variant='h2'
-                weight='regular'
+                weight='medium'
                 color='primary'
+                font='josefin'
                 className='mb-4 me-4'>
                 こんなお悩みの方へ
               </Typography>
-              <Button variant='primary' size='lg'>
+              <Button variant='primary' size='md'>
                 詳しく見る
               </Button>
             </div>
           </div>
           <MenuSection />
-        </div>
-      </section>
-
-      {/* アクセス SECTION */}
-      <section className='py-16 bg-white'>
-        <div className='container mx-auto px-4'>
-          <div className='text-left mb-12'>
-            <Typography
-              variant='h3'
-              weight='bold'
-              color='primary'
-              className='mb-4'>
-              Kokolth 福岡店
-            </Typography>
-            <Typography
-              variant='subtitle'
-              color='gray'
-              className='max-w-2xl text-left'>
-              〒812-0013
-            </Typography>
-            <Typography
-              variant='subtitle'
-              color='gray'
-              className='max-w-2xl text-left'>
-              福岡県福岡市博多区博多駅東3丁目5-15 アサヒ緑健本社ビル1F
-            </Typography>
-          </div>
-
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-            <div>
-              <AccessSection />
-            </div>
-            <div className='rounded-lg overflow-hidden'>
-              <iframe
-                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.7789882580844!2d130.42197267677173!3d33.589348973296804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191b2cb8f2fc9%3A0x26998c26070ee7dc!2z44CSODEyLTAwMTMg56aP5bKh55yM5YyX5b6u5biC5YyX5b6u5Yy66YOh5aC077yT5LiB55uu77yR4oiS77yR77yS!5e0!3m2!1sen!2sjp!4v1692123456789!5m2!1sen!2sjp'
-                width='100%'
-                height='500'
-                style={{ border: 0 }}
-                allowFullScreen
-                loading='lazy'
-                referrerPolicy='no-referrer-when-downgrade'></iframe>
-            </div>
-          </div>
         </div>
       </section>
     </>

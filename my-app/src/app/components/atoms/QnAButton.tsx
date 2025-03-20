@@ -7,7 +7,7 @@ interface QnAButtonProps {
 const QnAButton: React.FC<QnAButtonProps> = () => {
   return (
     <>
-      <button className='mt-7 w-[190px] h-[50px] inline-flex items-center justify-center rounded-md bg-white border border-gray-400 px-6 font-sm text-black transition active:scale-110 hover:bg-gray-400 hover:text-white'>
+      <button className='mt-4 w-[190px] h-[50px] inline-flex items-center justify-center rounded-md bg-white border border-gray-400 px-6 font-sm text-black transition active:scale-110 hover:bg-gray-400 hover:text-white'>
         お問い合わせ
         <svg
           className='icon ms-2 w-4 h-4 fill-current'

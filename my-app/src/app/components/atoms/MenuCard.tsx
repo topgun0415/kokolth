@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Typography } from './Typography';
 
 interface MenuCardProps {
   imageUrl: string;
@@ -28,7 +29,13 @@ export const MenuCard: React.FC<MenuCardProps> = ({
       {/* 内容 */}
       <div className='mt-4 text-center'>
         <div className='name'>
-          <p className='text-lg font-medium text-gray-800'>{nameJa}</p>
+          <Typography
+            variant='caption'
+            weight='medium'
+            color='primary'
+            font='medium'>
+            {nameJa}
+          </Typography>
         </div>
       </div>
     </div>

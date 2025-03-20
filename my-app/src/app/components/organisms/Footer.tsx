@@ -9,9 +9,10 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className='bg-gray-50 text-white'>
-      <div className='container mx-auto px-4 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-20'>
-          <div>
+      <div className='container mx-auto px-4 py-10'>
+        <div className='flex flex-col md:flex-row justify-between'>
+          {/* right section */}
+          <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
             <Image
               className='rounded-full'
               src='/logo_footer.png'
@@ -19,33 +20,50 @@ export const Footer: React.FC = () => {
               width={100}
               height={100}
             />
+            <Typography
+              variant='caption'
+              weight='medium'
+              color='primary'
+              font='josefin'>
+              Tel &nbsp;
+              <a
+                href='tel:0921231234'
+                className='text-blue-600 hover:underline'>
+                092-123-1234
+              </a>
+            </Typography>
 
             <Typography
               variant='caption'
-              color='gray'
-              className='mb-4 opacity-80'>
-              〒812-0013
+              weight='medium'
+              color='primary'
+              font='josefin'>
+              Email &nbsp;
+              <a
+                href='mailto:kokolth@example.co.jp'
+                className='text-blue-600 hover:underline'
+                target='_blank'
+                rel='noopener noreferrer'>
+                kokolth@example.co.jp
+              </a>
             </Typography>
-            <br />
+
             <Typography
               variant='caption'
-              color='gray'
-              className='mb-4 opacity-80'>
-              福岡県福岡市博多区博多駅東3丁目5-15 3-5-15 Hakataeki Higashi
-              Hakata-ku, Fukuoka-shi, Fukuoka-ken 812-0013
+              weight='medium'
+              color='primary'
+              font='josefin'>
+              営業時間 &nbsp; 平日 8:00-19:30 &nbsp;|&nbsp; 土日祝 10:00-19:00
             </Typography>
           </div>
-          <div></div>
-          <div>
+
+          {/* left section */}
+          <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
             <FooterSocialBar />
             <QnAButton />
-            <div className='mt-9'>
-              <Typography variant='caption' color='gray' className='opacity-70'>
+            <div className='mt-2'>
+              <Typography variant='caption' color='primary' font='josefin'>
                 &copy; {currentYear} kokolth. All Rights Reserved.
-              </Typography>
-              <br />
-              <Typography variant='caption' color='gray' className='opacity-70'>
-                Designed by kokolth team
               </Typography>
             </div>
           </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 
-interface FacebookCirclBtnProps {
+interface FacebookCirclButtonProps {
   href: string;
 }
 
-const FacebookCirclBtnProps: React.FC<FacebookCirclBtnProps> = ({ href }) => {
+const FacebookCirclButtonProps: React.FC<FacebookCirclButtonProps> = ({
+  href,
+}) => {
   return (
     <>
       <a
@@ -26,4 +28,4 @@ const FacebookCirclBtnProps: React.FC<FacebookCirclBtnProps> = ({ href }) => {
   );
 };
 
-export default FacebookCirclBtnProps;
+export default FacebookCirclButtonProps;

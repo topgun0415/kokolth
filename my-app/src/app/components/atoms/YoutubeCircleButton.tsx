@@ -4,7 +4,7 @@ interface YouTubeButtonProps {
   href: string;
 }
 
-const YouTubeButton: React.FC<YouTubeButtonProps> = ({ href }) => {
+const YouTubeCircleButton: React.FC<YouTubeButtonProps> = ({ href }) => {
   return (
     <>
       <a
@@ -29,4 +29,4 @@ const YouTubeButton: React.FC<YouTubeButtonProps> = ({ href }) => {
   );
 };
 
-export default YouTubeButton;
+export default YouTubeCircleButton;

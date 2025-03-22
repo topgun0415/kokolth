@@ -1,12 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Typography } from '../atoms/Typography';
-import QnAButton from '../atoms/QnAButton';
-import FooterSocialBar from '../molecules/FooterSocialBar';
+import { Button } from '../atoms/Button';
+import FooterSocialCard from '../molecules/FooterSocialCard';
 
 export const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className='bg-gray-50 text-white'>
       <div className='container mx-auto px-4 py-10'>
@@ -57,13 +55,15 @@ export const Footer: React.FC = () => {
             </Typography>
           </div>
 
-          {/* left section */}
-          <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
-            <FooterSocialBar />
-            <QnAButton />
+          {/* right section */}
+          <div className='mt-4 flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
+            <FooterSocialCard />
+            <Button size='lg' icon='email' className='mt-3'>
+              問い合わせ
+            </Button>
             <div className='mt-2'>
               <Typography variant='caption' color='primary' font='josefin'>
-                &copy; {currentYear} kokolth. All Rights Reserved.
+                2025 kokolth. All Rights Reserved.
               </Typography>
             </div>
           </div>

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { JSX } from 'react';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
 type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonIcon = 'email';
 
 interface ButtonProps {
-  variant?: ButtonVariant;
   size?: ButtonSize;
+  icon?: ButtonIcon;
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -15,57 +16,55 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
   size = 'md',
+  icon = '',
   className = '',
   children,
   onClick,
   disabled = false,
   type = 'button',
-  fullWidth = false,
 }) => {
-  const getVariantStyles = (): string => {
-    switch (variant) {
-      case 'primary':
-        return 'bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white focus:ring-green-500 rounded-md';
-      case 'secondary':
-        return 'bg-transparent border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white focus:ring-amber-500';
-      case 'outline':
-        return 'bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white focus:ring-green-500';
-      case 'text':
-        return 'bg-transparent text-gray-500 hover:text-gray-600 hover:underline focus:ring-green-500';
+  const getSize = (): string => {
+    switch (size) {
+      case 'sm':
+        return 'text-sm py-1 px-3 h-4';
+      case 'md':
+        return 'text-base py-2 px-4 h-8';
+      case 'lg':
+        return 'text-lg py-2 px-6 h-12';
       default:
-        return 'bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white focus:ring-green-500';
+        return 'text-base py-2 px-4 h-6';
     }
   };
 
-  const getSizeStyles = (): string => {
-    switch (size) {
-      case 'sm':
-        return 'text-sm py-1 px-3';
-      case 'md':
-        return 'text-base py-2 px-4';
-      case 'lg':
-        return 'text-lg py-3 px-6';
-      default:
-        return 'text-base py-2 px-4';
+  const getIcon = (): JSX.Element | null => {
+    if (icon === 'email') {
+      return <EnvelopeIcon className='h-5 w-5 mr-2' />;
     }
+    return null;
   };
+
+  const baseStyles = `
+    rounded-full bg-white border border-gray-400 text-gray-600 transition
+    active:scale-110 hover:bg-gray-400 hover:text-white hover:cursor-pointer
+    focus:outline-none focus:ring-2 focus:ring-offset-2 
+    flex items-center justify-center 
+    ${getSize()}
+    font-[JosefinSans-VariableFont]
+  `;
 
   return (
     <button
       type={type}
-      className={`
-        ${getVariantStyles()}
-        ${getSizeStyles()}
-        ${fullWidth ? 'w-full' : ''}
-        rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
-        disabled:opacity-50 disabled:cursor-not-allowed
-        ${className}
-      `}
+      className={`${baseStyles} ${className}`}
       onClick={onClick}
       disabled={disabled}>
-      {children}
+      <span className='flex items-center justify-center'>
+        {getIcon()}
+        {children}
+      </span>
     </button>
   );
 };
+
+export default Button;

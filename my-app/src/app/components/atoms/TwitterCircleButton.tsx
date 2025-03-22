@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface TwitterCircleBtnProps {
+interface TwitterCircleButtonProps {
   href: string;
 }
 
-const TwitterCircleBtn: React.FC<TwitterCircleBtnProps> = ({ href }) => {
+const TwitterCircleButton: React.FC<TwitterCircleButtonProps> = ({ href }) => {
   return (
     <>
       <a
@@ -31,4 +31,4 @@ const TwitterCircleBtn: React.FC<TwitterCircleBtnProps> = ({ href }) => {
   );
 };
 
-export default TwitterCircleBtn;
+export default TwitterCircleButton;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-interface NavCircleBtnProps {
+interface NavCircleButtonProps {
   icon: string;
   link: string;
   width: number;
@@ -9,7 +9,7 @@ interface NavCircleBtnProps {
   altText?: string;
 }
 
-const NavCircleBtn: React.FC<NavCircleBtnProps> = ({
+const NavCircleButton: React.FC<NavCircleButtonProps> = ({
   icon,
   link,
   width,
@@ -27,4 +27,4 @@ const NavCircleBtn: React.FC<NavCircleBtnProps> = ({
   );
 };
 
-export default NavCircleBtn;
+export default NavCircleButton;

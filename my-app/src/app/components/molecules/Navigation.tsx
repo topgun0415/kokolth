@@ -1,7 +1,7 @@
 // src/components/molecules/Navigation.tsx
 import React, { useState } from 'react';
 import Link from 'next/link';
-import NavCircleBtn from '../atoms/NavigationCircleBtn';
+import NavCircleBtn from '../atoms/NavigationCircleButton';
 
 interface NavigationProps {
   className?: string;
@@ -14,7 +14,6 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
     { label: 'メニュー', href: '/' },
     { label: 'コンセプト', href: '/about' },
     { label: 'ショッピング', href: '/menu' },
-    { label: 'アクセス', href: '/' },
     { label: '問い合わせ', href: '/contact' },
   ];
 

@@ -1,10 +1,12 @@
 import React from 'react';
 
-interface InstagramCircleBtnProps {
+interface InstagramCircleButtonProps {
   href: string;
 }
 
-const InstagramCircleBtn: React.FC<InstagramCircleBtnProps> = ({ href }) => {
+const InstagramCircleButton: React.FC<InstagramCircleButtonProps> = ({
+  href,
+}) => {
   return (
     <>
       <a
@@ -28,4 +30,4 @@ const InstagramCircleBtn: React.FC<InstagramCircleBtnProps> = ({ href }) => {
   );
 };
 
-export default InstagramCircleBtn;
+export default InstagramCircleButton;

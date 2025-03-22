@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Define the allowed types for props
 export type TypographyFont =
   | 'light'
   | 'medium'

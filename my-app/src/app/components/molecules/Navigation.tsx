@@ -1,24 +1,30 @@
-// src/components/molecules/Navigation.tsx
 import React, { useState } from 'react';
 import Link from 'next/link';
 import NavCircleBtn from '../atoms/NavigationCircleButton';
 
 interface NavigationProps {
   className?: string;
+  setNavBackground?: (isOpen: boolean) => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
+export const Navigation: React.FC<NavigationProps> = ({
+  className = '',
+  setNavBackground,
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'メニュー', href: '/' },
-    { label: 'コンセプト', href: '/about' },
-    { label: 'ショッピング', href: '/menu' },
-    { label: '問い合わせ', href: '/contact' },
+    { label: 'コンセプト', href: '/' },
+    { label: 'こんなお悩みの方へ', href: '/about' },
+    { label: 'メールカウンセリング', href: '/menu' },
+    { label: '料金', href: '/contact' },
+    { label: 'お問い合わせ', href: '/qna' },
   ];
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+    if (setNavBackground) setNavBackground(newState);
   };
 
   return (
@@ -27,8 +33,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
       <div className='hidden md:flex space-x-3 items-center'>
         {navItems.map((item) => (
           <Link href={item.href} key={item.href} className='cursor-pointer'>
-            <span
-              className={`text-md font-bold ms-4 text-gray-800 hover:text-gray-300 transition-colors`}>
+            <span className='text-md font-bold ms-4 text-gray-800 hover:text-gray-300 transition-colors'>
               {item.label}
             </span>
           </Link>
@@ -64,7 +69,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
           aria-label='Toggle menu'>
           {isMobileMenuOpen ? (
             <svg
-              className='w-6 h-6 text-left'
+              className='w-6 h-6 text-left transition-all duration-300'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -78,7 +83,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
             </svg>
           ) : (
             <svg
-              className='w-6 h-6'
+              className='w-6 h-6 transition-all duration-300'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
@@ -93,8 +98,13 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
           )}
         </button>
 
-        {isMobileMenuOpen && (
-          <div className='absolute top-13 left-0 right-0 bg-white shadow-lg p-4 z-10'>
+        <div
+          className={`absolute top-13 left-0 right-0 p-4 z-10 transition-all duration-400 ${
+            isMobileMenuOpen
+              ? 'bg-white shadow-lg'
+              : 'bg-transparent shadow-none'
+          }`}>
+          {isMobileMenuOpen && (
             <div className='flex flex-col space-y-4'>
               {navItems.map((item) => (
                 <Link
@@ -102,15 +112,15 @@ export const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
                   key={item.href}
                   className='cursor-pointer'>
                   <span
-                    className={` text-lg font-medium transition-colors`}
+                    className='text-lg font-medium transition-colors'
                     onClick={() => setIsMobileMenuOpen(false)}>
                     {item.label}
                   </span>
                 </Link>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </nav>
   );

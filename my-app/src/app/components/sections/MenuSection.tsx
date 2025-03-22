@@ -75,11 +75,9 @@ const MenuSection: React.FC = () => {
   useEffect(() => {
     // Client-side only code
     if (typeof window !== 'undefined') {
-      // 마운트될 때 document.body를 사용합니다
       Modal.setAppElement('body');
       setModalReady(true);
 
-      // 전체 페이지에 적용할 블러 스타일 추가
       const style = document.createElement('style');
       style.id = 'blur-overlay-style';
       style.innerHTML = `
@@ -105,14 +103,12 @@ const MenuSection: React.FC = () => {
       `;
       document.head.appendChild(style);
 
-      // 블러 오버레이 요소 추가
       const overlay = document.createElement('div');
       overlay.className = 'blur-overlay';
       overlay.id = 'blur-overlay';
       document.body.appendChild(overlay);
     }
 
-    // 클린업 함수
     return () => {
       const style = document.getElementById('blur-overlay-style');
       const overlay = document.getElementById('blur-overlay');
@@ -121,17 +117,14 @@ const MenuSection: React.FC = () => {
     };
   }, []);
 
-  // 모달 상태에 따라 블러 오버레이 제어
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const overlay = document.getElementById('blur-overlay');
 
       if (modalIsOpen) {
-        // 모달이 열릴 때 블러 활성화 및 스크롤 방지
         document.body.style.overflow = 'hidden';
         if (overlay) overlay.classList.add('active');
       } else {
-        // 모달이 닫힐 때 블러 비활성화 및 스크롤 허용
         document.body.style.overflow = 'unset';
         if (overlay) overlay.classList.remove('active');
       }
@@ -151,14 +144,14 @@ const MenuSection: React.FC = () => {
     <>
       <section className='py-16 bg-gray-100'>
         <div className='container mx-auto px-4'>
-          <div className='text-left mb-12'>
+          <div className='text-left mb-5'>
             <div className='flex justify-baseline items-baseline'>
               <Typography
-                variant='h2'
+                variant='h3'
                 weight='medium'
                 color='primary'
                 font='josefin'
-                className='mb-4 me-4'>
+                className='me-4'>
                 こんなお悩みの方へ
               </Typography>
             </div>
@@ -169,6 +162,7 @@ const MenuSection: React.FC = () => {
               spaceBetween={20}
               autoplay={{ delay: 30000 }}
               loop={true}
+              centeredSlides={true}
               pagination={{ el: '.custom-swiper-pagination', clickable: true }}
               className='pb-10'
               breakpoints={{
@@ -177,7 +171,7 @@ const MenuSection: React.FC = () => {
                 1024: { slidesPerView: 3 },
               }}>
               {menuItems.map((item, index) => (
-                <SwiperSlide key={index} className='flex justify-center'>
+                <SwiperSlide key={index} className='flex justify-center p-3'>
                   <div className='w-full max-w-xs mx-auto'>
                     <MenuCard
                       imageUrl={item.imageUrl}
@@ -213,11 +207,10 @@ const MenuSection: React.FC = () => {
                 background-color: #747373;
               }
 
-              /* 모달 스타일 */
               .ReactModal__Overlay {
                 opacity: 0;
                 transition: opacity 200ms ease-in-out;
-                background-color: transparent !important; /* 배경을 투명하게 설정 */
+                background-color: transparent !important;
                 z-index: 1000;
                 display: flex;
                 justify-content: center;
@@ -263,7 +256,6 @@ const MenuSection: React.FC = () => {
         </div>
       </section>
 
-      {/* 모달 - 클라이언트 사이드에서만 렌더링 */}
       {modalReady && (
         <Modal
           isOpen={modalIsOpen}
@@ -273,10 +265,10 @@ const MenuSection: React.FC = () => {
           ariaHideApp={modalReady}>
           <div className='text-center'>
             <Typography
-              variant='h3'
-              weight='medium'
+              variant='h5'
+              weight='bold'
               color='primary'
-              font='josefin'
+              font='light'
               className='mb-4'>
               {selectedItem.nameJa}
             </Typography>
@@ -290,17 +282,17 @@ const MenuSection: React.FC = () => {
             </div>
             <div className='mt-8'>
               <Typography
-                variant='body'
-                weight='regular'
-                color='dark'
-                className='mb-8'>
-                このようなお悩みについて、メールカウンセリングで詳しくお話を伺います。
-                あなたのペースでゆっくりとお気持ちを整理していきましょう。
+                variant='subtitle'
+                weight='medium'
+                color='primary'
+                font='light'
+                className='mb-4 text-left'>
+                {selectedItem.description}
               </Typography>
             </div>
             <button
               onClick={closeModal}
-              className='mt-4 bg-red-500 hover:bg-red-600 transition-colors text-white py-2 px-6 rounded-md'>
+              className='mt-4 bg-gray-500 hover:bg-gray-600 transition-colors text-white py-2 px-6 rounded-md'>
               閉じる
             </button>
           </div>

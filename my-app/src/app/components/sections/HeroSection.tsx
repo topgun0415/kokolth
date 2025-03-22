@@ -60,44 +60,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
             </Typography>
           </div>
 
-          {/* Subtitle - smaller gap between title and subtitle */}
           <div className='mb-70'>
             {' '}
-            {/* Increased space between subtitle and body text */}
             <Typography
               variant='h2'
               weight='medium'
               color='white'
               font='josefin'>
               {subtitle}
-            </Typography>
-          </div>
-
-          {/* Body Text pushed to the bottom area */}
-          <div className='text-white space-y-4 '>
-            {' '}
-            {/* Added bottom margin */}
-            <Typography
-              variant='subtitle'
-              weight='medium'
-              color='white'
-              font='josefin'
-              className='leading-relaxed text-center'>
-              <strong>高齢出産</strong>、妊活、妊娠、高齢育児、夫婦関係など、
-              <br />
-              さまざまな不安や心配を抱えている皆さんへ。
-            </Typography>
-            <Typography
-              variant='subtitle'
-              weight='medium'
-              color='white'
-              font='josefin'
-              className='leading-relaxed text-center'>
-              ４８歳での出産経験と、管理栄養士・心理
-              <br />
-              カウンセラーの資格を持つ私が、
-              <br />
-              メールカウンセリングでサポートいたします。
             </Typography>
           </div>
         </div>

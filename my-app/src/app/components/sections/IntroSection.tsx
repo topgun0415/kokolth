@@ -39,7 +39,7 @@ const IntroSection: React.FC = () => {
     <>
       <section
         ref={sectionRef}
-        className='relative h-96 flex items-center justify-center overflow-hidden'>
+        className=' h-96 flex items-center justify-center overflow-hidden'>
         <div className='text-white space-y-8'>
           <div
             className={`transition-all duration-1000 ease-out transform ${

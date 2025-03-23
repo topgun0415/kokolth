@@ -145,13 +145,20 @@ const MenuSection: React.FC = () => {
       <section className='py-16 bg-gray-100'>
         <div className='container mx-auto px-4'>
           <div className='text-left mb-5'>
-            <div className='flex justify-baseline items-baseline'>
+            <div className='flex flex-col justify-center items-center'>
               <Typography
-                variant='h3'
+                variant='h2'
+                weight='medium'
+                color='primary'
+                font='josefin'>
+                CONCERNS
+              </Typography>
+              <Typography
+                variant='subtitle'
                 weight='medium'
                 color='primary'
                 font='josefin'
-                className='me-4'>
+                className='max-w-2xl'>
                 こんなお悩みの方へ
               </Typography>
             </div>

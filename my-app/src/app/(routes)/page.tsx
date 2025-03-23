@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import HeroSection from '../components/sections/HeroSection';
-import IntroSection from '../components/sections/IntroSection';
+import ConceptSection from '../components/sections/ConceptSection';
+import ServiceSection from '../components/sections/ServiceSection';
 import MenuSection from '../components/sections/MenuSection';
 import AboutSection from '../components/sections/AboutSection';
 
@@ -10,10 +11,17 @@ const Page: NextPage = () => {
       {/* HERO SECTION */}
       <HeroSection title='KOKOLTH' subtitle='mail counseling room' />
 
-      {/* イントロ SECTION */}
-      <IntroSection />
+      {/* CONCEPT SECTION */}
+      <div id='concept'>
+        <ConceptSection />
+      </div>
 
-      {/* コンセプト SECTION */}
+      {/* OUR SERVICE SECTION */}
+      <div id='service'>
+        <ServiceSection />
+      </div>
+
+      {/* OUR SERVICE SECTION */}
       <AboutSection />
 
       {/* メニュー SECTION */}

@@ -1,127 +1,284 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Typography } from '../atoms/Typography';
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
+import { motion } from 'framer-motion';
 
 const AboutSection: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [headingVisible, setHeadingVisible] = useState(false);
+  const [subtitleVisible, setSubtitleVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
+  const [imageVisible, setImageVisible] = useState(false);
+
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const sectionElement = sectionRef.current;
+    if (!sectionElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => setImageVisible(true), 200);
+            setTimeout(() => setHeadingVisible(true), 500);
+            setTimeout(() => setSubtitleVisible(true), 800);
+            setTimeout(() => setContentVisible(true), 1100);
+
+            observer.unobserve(sectionElement);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px',
+      }
+    );
+
+    observer.observe(sectionElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
-      <section className='py-16 bg-white'>
+      <section ref={sectionRef} className='py-16 bg-white'>
         <div className='container mx-auto px-4'>
-          <div className='flex flex-col-reverse justify-between items-center text-left lg:flex-row lg:text-left lg:items-start'>
+          <div className='flex flex-col-reverse justify-between items-center lg:flex-row lg:items-start'>
             <div className='mb-5 max-w-2xl'>
-              <div className='flex items-center gap-4 lg:hidden'>
-                <div>
-                  <Typography
-                    variant='h2'
-                    weight='medium'
-                    color='primary'
-                    font='josefin'>
-                    ABOUT US
-                  </Typography>
-                  <Typography
-                    variant='subtitle'
-                    weight='medium'
-                    color='primary'
-                    font='josefin'
-                    className='max-w-2xl'>
-                    カウンセラーよりご挨拶
-                  </Typography>
-                </div>
+              <div className='text-center lg:text-left'>
+                <div className='flex items-center justify-start lg:justify-between gap-10'>
+                  <div
+                    className={`transform transition-all duration-1000 ease-out ${
+                      headingVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-10'
+                    }`}>
+                    <Typography
+                      variant='h2'
+                      weight='medium'
+                      color='primary'
+                      font='josefin'
+                      className='mt-10 lg:mt-0'>
+                      ABOUT US
+                    </Typography>
+                    <div
+                      className={`transform transition-all duration-1000 ease-out ${
+                        subtitleVisible
+                          ? 'opacity-100 translate-y-0'
+                          : 'opacity-0 translate-y-10'
+                      }`}>
+                      <Typography
+                        variant='subtitle'
+                        weight='medium'
+                        color='primary'
+                        font='josefin'
+                        className='max-w-lg text-left'>
+                        私たちについて
+                      </Typography>
+                    </div>
+                  </div>
 
-                <div
-                  className='rounded-full overflow-hidden border-2 border-gray-50 shadow-sm flex-shrink-0'
-                  style={{ width: 150, height: 150 }}>
-                  <Image
-                    src='/images/child1.png'
-                    alt='Counselor'
-                    width={70}
-                    height={70}
-                    className='object-cover w-full h-full'
-                  />
+                  <div
+                    className={`rounded-full overflow-hidden border-2 border-gray-100 shadow-sm transform transition-all duration-1000 ease-out sm:hidden ${
+                      imageVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ width: 115, height: 115 }}>
+                    <Image
+                      src='/images/aboutImage.jpeg'
+                      alt='Profile'
+                      width={150}
+                      height={150}
+                      className='object-cover'
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className='hidden lg:block'>
+              <br />
+
+              {/* Mobile Content */}
+              <div
+                className={`lg:hidden transform transition-all duration-1000 ease-out ${
+                  contentVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
+                }`}>
                 <Typography
-                  variant='h2'
-                  weight='medium'
-                  color='primary'
-                  font='josefin'>
-                  ABOUT US
-                </Typography>
-                <Typography
-                  variant='subtitle'
+                  variant='caption'
                   weight='medium'
                   color='primary'
                   font='josefin'
-                  className='max-w-2xl'>
-                  カウンセラーよりご挨拶
+                  className='max-w-lg text-left'>
+                  はじめまして！
+                  <br />
+                  管理栄養士、心理カウンセラーの石松寿子と申します。
+                  <br />
+                  ４８歳の時に次男を出産し、高齢出産を希望される方のご参考になることを目指してスレッズにて発信をしておりましたが、
+                  <br />
+                  この度、さらに細かいご質問やお悩みに、個人的に詳しく丁寧にお答えしながら皆さんの人生に寄り添える存在になれればとカウンセリングルームを開設いたしました。
                 </Typography>
               </div>
 
-              <br />
-              <Typography
-                variant='caption'
-                weight='medium'
-                color='primary'
-                font='josefin'
-                className='max-w-2xl'>
-                はじめまして！ <br />
-                管理栄養士、心理カウンセラーの石松寿子と申します。
-                <br />
-                <br />
-                ４８歳の時に次男を出産し、
-                <br />
-                高齢出産を希望される方のご参考になることを目指して
-                <br />
-                スレッズにて発信をしておりましたが、
-                <br />
-                この度、さらに細かいご質問やお悩みに、
-                <br />
-                個人的に詳しく丁寧にお答えしながら
-                <br />
-                皆さんの人生に寄り添える存在になれればと
-                <br />
-                カウンセリングルームを開設いたしました。
-                <br />
-                <br />
-                高齢での妊娠や出産はセンシティブな内容ゆえに、
-                <br />
-                誰にでもなんでも 相談できるわけではありません。
-                <br />
-                今不安な気持ちや迷いでもやもやした思いを抱えている
-                <br />
-                という方、ご自分の状況やお気持ち、
-                <br />
-                ご質問をどうぞメールでお聞かせください。
-                <br />
-                こんなこと聞いたら失礼かなとか、
-                <br />
-                不謹慎かなという心配は不要です。
-                <br />
-                <br />
-                どんな内容でも、しっかりと受け止めさせて頂きます。
-                <br />
-                ご参考までに、私の考えや経験も少しお伝えいたします。
-                <br />
-                その上で、ご自分の望む未来へ、一緒に進んでいきましょう。
-                <br />
-                <br />
-                管理栄養士が本職なので、食生活に関するご質問も大歓迎です。
-                <br />
-                カウンセラーは心の専門家であると同時に相談された方の最大の味方でもあります。
-                皆様のお気持ちがすっきりして、爽快な気分で生きていかれますよう全力で応援いたします。
-              </Typography>
-              <br />
+              {/* Desktop Content */}
+              <div
+                className={`hidden lg:block transform transition-all duration-1000 ease-out ${
+                  contentVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
+                }`}>
+                <Typography
+                  variant='caption'
+                  weight='medium'
+                  color='primary'
+                  font='josefin'
+                  className='max-w-lg text-left'>
+                  はじめまして！
+                  <br />
+                  管理栄養士、心理カウンセラーの石松寿子と申します。
+                  <br />
+                  ４８歳の時に次男を出産し、高齢出産を希望される方の
+                  <br />
+                  ご参考になることを目指してスレッズにて発信をしておりましたが、
+                  <br />
+                  この度、さらに細かいご質問やお悩みに、個人的に詳しく丁寧にお答えしながら
+                  <br />
+                  皆さんの人生に寄り添える存在になれればとカウンセリングルームを開設いたしました。
+                </Typography>
+              </div>
+
+              {/* Desktop extended content with animation */}
+              <div
+                className={`hidden lg:block transform transition-all duration-1000 ease-out ${
+                  contentVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
+                }`}>
+                <Typography
+                  variant='caption'
+                  weight='medium'
+                  color='primary'
+                  font='josefin'
+                  className='max-w-lg text-left'>
+                  <br />
+                  高齢での妊娠や出産はセンシティブな内容ゆえに、
+                  <br />
+                  誰にでもなんでも相談できるわけではありません。
+                  <br />
+                  今不安な気持ちや迷いでもやもやした思いを抱えているという方、
+                  <br />
+                  ご自分の状況やお気持ち、ご質問をどうぞメールでお聞かせください。
+                  <br />
+                  こんなこと聞いたら失礼かなとか、不謹慎かなという心配は不要です。
+                  <br />
+                  どんな内容でも、しっかりと受け止めさせて頂きます。
+                  <br />
+                  ご参考までに、私の考えや経験も少しお伝えいたします。
+                  <br />
+                  その上で、ご自分の望む未来へ、一緒に進んでいきましょう。
+                  <br />
+                  管理栄養士が本職なので、食生活に関するご質問も大歓迎です。
+                  <br />
+                  <br />
+                  カウンセラーは心の専門家であると同時に
+                  <br />
+                  相談された方の最大の味方でもあります。
+                  <br />
+                  皆様のお気持ちがすっきりして、爽快な気分で生きていかれますよう
+                  <br />
+                  全力で応援いたします。
+                </Typography>
+              </div>
+
+              <div
+                className={`lg:hidden mt-4 relative transform transition-all duration-1000 ease-out ${
+                  contentVisible
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
+                }`}>
+                <div className='relative flex justify-center mt-10 mb-5'>
+                  <button
+                    className='flex items-center text-primary font-medium'
+                    onClick={() => setIsExpanded(!isExpanded)}>
+                    <motion.span
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}>
+                      {isExpanded ? 'CLOSE' : 'OPEN'}
+                    </motion.span>
+
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className='ml-2 flex justify-center items-center'>
+                      {isExpanded ? (
+                        <MinusIcon className='w-6 h-6' />
+                      ) : (
+                        <PlusIcon className='w-6 h-6' />
+                      )}
+                    </motion.div>
+                  </button>
+                </div>
+
+                {isExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.4 }}>
+                    <Typography
+                      variant='caption'
+                      weight='medium'
+                      color='primary'
+                      font='josefin'
+                      className='max-w-lg mt-2 text-left'>
+                      <br />
+                      高齢での妊娠や出産はセンシティブな内容ゆえに、
+                      <br />
+                      誰にでもなんでも相談できるわけではありません。
+                      <br />
+                      今、不安な気持ちや迷いで、もやもやした思いを抱えている方、
+                      <br />
+                      お気持ちや状況、ご質問をどうぞメールでお聞かせください。
+                      <br />
+                      <br />
+                      こんなこと聞いたら失礼かなとか、不謹慎かなという心配は不要です。
+                      どんな内容でも、しっかりと受け止めさせて頂きます。
+                      <br />
+                      ご参考までに、私の考えや経験も少しお伝えいたします。
+                      <br />
+                      その上で、ご自分の望む未来へ、一緒に進んでいきましょう。
+                      <br />
+                      管理栄養士が本職なので、食生活に関するご質問も大歓迎です。
+                      <br />
+                      <br />
+                      カウンセラーは心の専門家であると同時に、相談者の最大の味方でもあります。
+                      皆様のお気持ちがすっきりして、爽快な気分で生きていかれますよう
+                      全力で応援いたします。
+                    </Typography>
+                  </motion.div>
+                )}
+              </div>
             </div>
 
-            <div className='hidden lg:block lg:ml-8 mt-15'>
+            <div
+              className={`hidden md:block md:mt-20 transform transition-all duration-1000 ease-out ${
+                imageVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-10'
+              }`}>
               <Image
-                src='/images/child1.png'
-                alt='Counselor'
-                width={400}
-                height={240}
-                className='rounded-lg shadow-md'
+                src='/images/aboutImage.jpeg'
+                alt='About Us'
+                width={350}
+                height={350}
               />
             </div>
           </div>

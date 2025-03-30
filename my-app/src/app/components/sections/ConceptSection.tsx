@@ -64,7 +64,7 @@ const ConceptSection: React.FC = () => {
     <>
       <section ref={sectionRef} className='py-16 bg-white'>
         <div className='container mx-auto px-4'>
-          <div className='h-[40vh] text-center'>
+          <div className='h-[45vh] text-center'>
             <div className='mb-5'>
               <div
                 className={`transform transition-all duration-1000 ease-out ${

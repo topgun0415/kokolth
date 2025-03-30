@@ -17,9 +17,9 @@ export const Navigation: React.FC<NavigationProps> = ({
     () => [
       { label: 'コンセプト', href: '#concept' },
       { label: 'メールカウンセリングとは', href: '#service' },
-      { label: 'カウンセラーよりご挨拶', href: '#counseling' },
-      { label: '料金', href: '#pricing' },
-      { label: 'お問い合わせ', href: '#contact' },
+      { label: 'カウンセラーよりご挨拶', href: '#about' },
+      { label: 'カウンセリングの進め方', href: '#process' },
+      { label: 'こんなお悩みの方へ', href: '#menu' },
     ],
     []
   );

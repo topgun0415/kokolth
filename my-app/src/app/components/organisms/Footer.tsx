@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 import { Typography } from '../atoms/Typography';
 import { Button } from '../atoms/Button';
 import FooterSocialCard from '../molecules/FooterSocialCard';
@@ -11,13 +11,14 @@ export const Footer: React.FC = () => {
         <div className='flex flex-col md:flex-row justify-between'>
           {/* right section */}
           <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
-            <Image
-              className='rounded-full'
-              src='/logo_footer.png'
-              alt='kokolth logo'
-              width={100}
-              height={100}
-            />
+            <Typography
+              variant='h4'
+              weight='medium'
+              color='primary'
+              font='josefin'
+              className='md:mt-10 lg:mt-2'>
+              KOKOLTH
+            </Typography>
             <Typography
               variant='caption'
               weight='medium'
@@ -56,10 +57,10 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* right section */}
-          <div className='mt-4 flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
+          <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
             <FooterSocialCard />
             <Button size='lg' icon='email' className='mt-3'>
-              問い合わせ
+              <Link href='/contact'>問い合わせ</Link>
             </Button>
             <div className='mt-2'>
               <Typography variant='caption' color='primary' font='josefin'>

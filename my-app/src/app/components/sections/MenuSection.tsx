@@ -142,7 +142,7 @@ const MenuSection: React.FC = () => {
 
   return (
     <>
-      <section className='py-16 bg-gray-100'>
+      <section className='py-16 bg-white'>
         <div className='container mx-auto px-4'>
           <div className='text-left mb-5'>
             <div className='flex flex-col justify-center items-center'>
@@ -173,9 +173,22 @@ const MenuSection: React.FC = () => {
               pagination={{ el: '.custom-swiper-pagination', clickable: true }}
               className='pb-10'
               breakpoints={{
-                320: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
+                320: {
+                  slidesPerView: 1.2,
+                  centeredSlides: true,
+                  initialSlide: 0,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  centeredSlides: true,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  centeredSlides: true,
+                  spaceBetween: 20,
+                },
               }}>
               {menuItems.map((item, index) => (
                 <SwiperSlide key={index} className='flex justify-center p-3'>
@@ -212,6 +225,21 @@ const MenuSection: React.FC = () => {
               }
               .custom-swiper-pagination .swiper-pagination-bullet-active {
                 background-color: #747373;
+              }
+
+              @media (max-width: 640px) {
+                .swiper-slide {
+                  opacity: 0.4;
+                  transition: all 0.3s ease;
+                  transform: scale(0.9);
+                }
+                .swiper-slide-active {
+                  opacity: 1;
+                  transform: scale(1);
+                }
+                .swiper-container {
+                  padding: 0 20px;
+                }
               }
 
               .ReactModal__Overlay {

@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import HeroSection from '../components/sections/HeroSection';
 import ConceptSection from '../components/sections/ConceptSection';
 import ServiceSection from '../components/sections/ServiceSection';
+import ProcessSection from '../components/sections/ProcessSection';
 import MenuSection from '../components/sections/MenuSection';
 import AboutSection from '../components/sections/AboutSection';
 
@@ -22,10 +23,19 @@ const Page: NextPage = () => {
       </div>
 
       {/* OUR SERVICE SECTION */}
-      <AboutSection />
+      <div id='about'>
+        <AboutSection />
+      </div>
+
+      {/* PROCESS SECTION */}
+      <div id='process'>
+        <ProcessSection />
+      </div>
 
       {/* メニュー SECTION */}
-      <MenuSection />
+      <div id='menu'>
+        <MenuSection />
+      </div>
     </>
   );
 };

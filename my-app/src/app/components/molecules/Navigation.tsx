@@ -131,8 +131,8 @@ export const Navigation: React.FC<NavigationProps> = ({
           <NavCircleBtn
             icon='/icons/ios_call_icon.png'
             link='#'
-            width={25}
-            height={25}
+            width={30}
+            height={30}
             altText='電話でお問い合わせ'
           />
           <NavCircleBtn

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 interface AdditionalContent {
@@ -28,6 +28,34 @@ const ProcessCard = () => {
   const [expandedAccordions, setExpandedAccordions] = useState<
     Record<string, boolean>
   >({});
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const cardElement = cardRef.current;
+    if (!cardElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => setIsVisible(true), 1000);
+            observer.unobserve(cardElement);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px',
+      }
+    );
+
+    observer.observe(cardElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const toggleAccordion = (id: string) => {
     setExpandedAccordions((prev) => ({
@@ -85,7 +113,11 @@ const ProcessCard = () => {
 
   return (
     <>
-      <div className='w-full max-w-3xl mx-auto shadow-md rounded-lg overflow-hidden'>
+      <div
+        ref={cardRef}
+        className={`w-full max-w-3xl mx-auto shadow-md rounded-lg overflow-hidden transform transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
         <div className='bg-gray-50  border-gray-200 rounded-lg p-4 md:p-8 relative '>
           <ol className='relative list-none p-0 m-0'>
             {steps.map((step, index) => (
@@ -97,7 +129,7 @@ const ProcessCard = () => {
                     </div>
 
                     {index < steps.length - 1 && (
-                      <div className='w-1 bg-gray-200 h-full absolute left-[23px] top-[56px]'></div>
+                      <div className='w-1 bg-gray-200 h-full absolute left-[23px] top-[48px]'></div>
                     )}
                   </div>
 

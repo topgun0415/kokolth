@@ -1,11 +1,10 @@
-import type { NextPage } from 'next';
+import React from 'react';
+import ContactSection from '@/app/components/sections/ContactSection';
 
-const Page: NextPage = () => {
+export default function ContactPage() {
   return (
-    <>
-      <h2>Hello Contact Page!</h2>
-    </>
+    <main className='min-h-screen pt-[80px]'>
+      <ContactSection />
+    </main>
   );
-};
-
-export default Page;
+}

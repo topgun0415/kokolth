@@ -4,7 +4,6 @@ import { Typography } from '../atoms/Typography';
 
 const ConceptSection: React.FC = () => {
   const [titleVisible, setTitleVisible] = useState(false);
-  const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [lineVisibility, setLineVisibility] = useState([
     false,
     false,
@@ -26,7 +25,6 @@ const ConceptSection: React.FC = () => {
           if (entry.isIntersecting) {
             setTimeout(() => setTitleVisible(true), 200);
             setTimeout(() => setButtonVisible(true), 500);
-            setTimeout(() => setSubtitleVisible(true), 600);
 
             lineVisibility.forEach((_, index) => {
               setTimeout(() => {

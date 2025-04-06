@@ -38,8 +38,7 @@ const ProcessSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className='py-16 bg-gray-100'>
-      {/* Header Section with Title and Subtitle */}
+    <section ref={sectionRef} className='py-12 bg-gray-100'>
       <div className='text-center mb-12'>
         <div
           className={`transform transition-all duration-1000 ease-out ${
@@ -48,26 +47,11 @@ const ProcessSection: React.FC = () => {
               : 'opacity-0 translate-y-10'
           }`}>
           <Typography
-            variant='h2'
+            variant='h4'
             weight='medium'
             color='primary'
-            font='josefin'>
-            PROCESS
-          </Typography>
-        </div>
-
-        <div
-          className={`transform transition-all duration-1000 ease-out ${
-            subtitleVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10'
-          }`}>
-          <Typography
-            variant='subtitle'
-            weight='medium'
-            color='primary'
-            font='josefin'
-            className='mb-6'>
+            font='yugothic-medium'
+            className='mb-10 text-center'>
             メールカウンセリングの進め方
           </Typography>
         </div>

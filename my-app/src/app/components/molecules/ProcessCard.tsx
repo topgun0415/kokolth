@@ -67,7 +67,8 @@ const ProcessCard = () => {
   const steps: Step[] = [
     {
       title: 'お申し込み',
-      content: 'まずはお問い合わせフォームよりお申し込みをお願いいたします。',
+      content:
+        'まずはお問い合わせフォームより<br />お申し込みをお願いいたします。',
       hasLinkButton: true,
       linkButtonText: 'お申し込みはこちら',
       linkButtonUrl: '',
@@ -102,12 +103,12 @@ const ProcessCard = () => {
     {
       title: 'その後のやり取り',
       content:
-        'お気持ちがスッキリされた場合は、そのまま終了されても構いません。さらにご相談されたい場合は、いつでもご返信ください。<br /><span class="text-red-600 font-bold">※２回目以降のやり取りに期限はありません</span>ので、今後もご自由にカウンセリングを活用ください。',
+        'お気持ちがスッキリされた場合は、そのまま終了されても構いません。さらにご相談されたい場合は、いつでもご返信ください。<br /><br />※<span class="text-red-600 font-bold">２回目以降のやり取りに期限はありません</span>ので、今後もご自由にカウンセリングを活用ください。',
     },
     {
       title: 'アンケート',
       content:
-        'よろしければ、お問い合わせフォーム、もしくは<span class="text-green-600 font-bold">LINE</span>でカウンセリングの率直なご感想をお聞かせください。<br />今後の改善に取り入れさせて頂きます！',
+        'よろしければ、お問い合わせフォーム、もしくは<span class="text-green-600 font-bold">LINE</span>でカウンセリングの率直なご感想をお聞かせください。今後の改善に取り入れさせて頂きます！',
     },
   ];
 
@@ -118,12 +119,12 @@ const ProcessCard = () => {
         className={`w-full max-w-3xl mx-auto shadow-md rounded-lg overflow-hidden transform transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-        <div className='bg-gray-50  border-gray-200 rounded-lg p-4 md:p-8 relative '>
+        <div className='bg-gray-50  border-gray-200 rounded-lg p-3 md:p-8 relative '>
           <ol className='relative list-none p-0 m-0'>
             {steps.map((step, index) => (
               <li key={index} className='relative pb-12 last:pb-0'>
                 <div className='flex flex-row'>
-                  <div className='flex flex-col items-center mr-6'>
+                  <div className='flex flex-col items-center mr-2'>
                     <div className='relative z-10 flex justify-center items-center w-12 h-12 text-white bg-gray-600 border-4 border-white rounded-full font-extrabold text-base'>
                       {index + 1}
                     </div>
@@ -136,7 +137,7 @@ const ProcessCard = () => {
                   {/* Right column with content */}
                   <div className='flex-1'>
                     {/* Step Title */}
-                    <h3 className='text-lg font-bold mb-3 text-left'>
+                    <h3 className='text-lg font-bold mt-2 mb-4 text-left'>
                       {step.title}
                     </h3>
 

@@ -10,39 +10,145 @@
   --light-background: #f9fafb;
 }
 
-@font-face {
-  font-family: 'GenJyuuGothicXMonospaceLight';
-  src: url('/fonts/Gen Jyuu Gothic X Monospace Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
+@keyframes shadeRightAnime {
+  0% {
+    transform: scaleY(1.08);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.08);
+  }
 }
 
-@font-face {
-  font-family: 'GenJyuuGothicXMonospaceMedium';
-  src: url('/fonts/Gen Jyuu Gothic X Monospace Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+@keyframes shadeLeftAnime {
+  0% {
+    transform: scaleY(1.05);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.05);
+  }
 }
 
-@font-face {
-  font-family: 'GenJyuuGothicXMonospaceHeavy';
-  src: url('/fonts/Gen Jyuu Gothic X Monospace Heavy.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+.shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
 }
 
-@font-face {
-  font-family: 'JosefinSans-Italic-Variable';
-  src: url('/fonts/JosefinSans-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+.shade-bg {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  backface-visibility: hidden;
 }
 
-@font-face {
-  font-family: 'JosefinSans-VariableFont';
-  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+.shade .right {
+  width: 88.4375%;
+  right: 0;
+  background-image: url('/images/57bd0c5419acefa36e7c.webp');
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  transform-origin: top right;
+  animation: shadeRightAnime 8s 0s infinite normal forwards
+    cubic-bezier(0.05, 0.24, 0.76, 1.05);
+}
+
+.shade .left {
+  width: 11.5425%;
+  left: 0;
+  background-image: url('/images/1d2b77be829fc9206c0a.webp');
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  transform-origin: bottom left;
+  animation: shadeLeftAnime 6s 0s infinite normal forwards
+    cubic-bezier(0.05, 0.14, 0.86, 1.05);
+}
+
+@keyframes shadeRightAnime {
+  0% {
+    transform: scaleY(1.08);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.08);
+  }
+}
+
+@keyframes shadeLeftAnime {
+  0% {
+    transform: scaleY(1.05);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.05);
+  }
+}
+
+.shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+}
+
+.shade-bg {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  backface-visibility: hidden;
+}
+
+.shade .right {
+  width: 88.4375%;
+  right: 0;
+  background-image: url('/images/57bd0c5419acefa36e7c.webp');
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  transform-origin: top right;
+  animation: shadeRightAnime 8s 0s infinite normal forwards
+    cubic-bezier(0.05, 0.24, 0.76, 1.05);
+}
+
+.shade .left {
+  width: 11.5425%;
+  left: 0;
+  background-image: url('/images/1d2b77be829fc9206c0a.webp');
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  transform-origin: bottom left;
+  animation: shadeLeftAnime 6s 0s infinite normal forwards
+    cubic-bezier(0.05, 0.14, 0.86, 1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .shade .right {
+    width: 98%;
+    background-size: 150% auto;
+  }
+
+  .shade .left {
+    width: 12%;
+  }
 }
 
 html {
@@ -54,7 +160,6 @@ body {
   background-color: var(--background-color);
 }
 
-/* Custom container for consistent padding */
 .container {
   width: 100%;
   max-width: 1280px;
@@ -78,7 +183,6 @@ body {
   }
 }
 
-/* Animation for page transitions */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -94,7 +198,6 @@ body {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Custom scroll bar */
 ::-webkit-scrollbar {
   width: 8px;
 }

@@ -28,7 +28,8 @@ const menuItems = [
     description:
       '妊活中は人に言えない思いをたくさん抱える時期です。' +
       '自分の体験や思いをなんでも話せる人ってなかなかいませんよね。' +
-      'メールでのカウンセリングですので、なんでも吐き出してくださいね。',
+      'メールでのカウンセリングですので、なんでも吐き出して' +
+      '気持ちを楽にすることでストレスを軽くしていきましょう。',
   },
   {
     imageUrl: '/images/menu3.jpg',
@@ -37,6 +38,7 @@ const menuItems = [
     description:
       '妊娠中はホルモンバランスの変化でメンタルが大揺れする期間です。' +
       'お腹の赤ちゃんのためにはママがリラックスして過ごすのが一番。' +
+      'また食事の内容もとても大切な期間です。栄養のご相談はもちろん、' +
       'どんなお悩みでもご相談ください。',
   },
   {
@@ -46,7 +48,8 @@ const menuItems = [
     description:
       '高齢ママならではの悩みは尽きませんね。現在私も50歳で２歳を' +
       '育てていますので、お気持ちがよくわかります。高齢ママだからこそ' +
-      '実現できる子育ての楽しみ方があります。一緒に探しましょう！',
+      '実現できる子育ての楽しみ方があります。二人の子供を成人まで育てた' +
+      '経験もありますので、お子さんの年齢を問わずご相談ください。',
   },
   {
     imageUrl: '/images/menu5.jpg',
@@ -55,7 +58,8 @@ const menuItems = [
     description:
       '夫婦関係は全ての根幹です。私は離婚寸前まで夫婦関係が崩壊していた' +
       '時期を経て、復縁からの次男出産というサプライズを経験しました。' +
-      '今どんな状態でも、良い関係を作ることは可能です。ぜひご相談ください。',
+      '今どんな状態でも、良い関係を作ることは可能です。問題の内容が' +
+      'どのようなものでも大丈夫です。お話を聞かせてください。',
   },
   {
     imageUrl: '/images/menu6.jpg',
@@ -73,7 +77,6 @@ const MenuSection: React.FC = () => {
   const [modalReady, setModalReady] = useState(false);
 
   useEffect(() => {
-    // Client-side only code
     if (typeof window !== 'undefined') {
       Modal.setAppElement('body');
       setModalReady(true);
@@ -142,23 +145,16 @@ const MenuSection: React.FC = () => {
 
   return (
     <>
-      <section className='py-16 bg-white'>
+      <section className='py-10 bg-white'>
         <div className='container mx-auto px-4'>
           <div className='text-left mb-5'>
             <div className='flex flex-col justify-center items-center'>
               <Typography
-                variant='h2'
+                variant='h3'
                 weight='medium'
                 color='primary'
-                font='josefin'>
-                CONCERNS
-              </Typography>
-              <Typography
-                variant='subtitle'
-                weight='medium'
-                color='primary'
-                font='josefin'
-                className='max-w-2xl'>
+                font='yugothic-medium'
+                className=' mt-4 text-center'>
                 こんなお悩みの方へ
               </Typography>
             </div>
@@ -300,10 +296,9 @@ const MenuSection: React.FC = () => {
           ariaHideApp={modalReady}>
           <div className='text-center'>
             <Typography
-              variant='h5'
-              weight='bold'
+              variant='subtitle'
               color='primary'
-              font='light'
+              font='yugothic-medium'
               className='mb-4'>
               {selectedItem.nameJa}
             </Typography>
@@ -315,13 +310,13 @@ const MenuSection: React.FC = () => {
                 className='object-cover rounded-md'
               />
             </div>
-            <div className='mt-8'>
+            <div className='mt-8 text-left'>
               <Typography
-                variant='subtitle'
+                variant='caption'
                 weight='medium'
                 color='primary'
-                font='light'
-                className='mb-4 text-left'>
+                font='yugothic-regular'
+                className='mb-4'>
                 {selectedItem.description}
               </Typography>
             </div>

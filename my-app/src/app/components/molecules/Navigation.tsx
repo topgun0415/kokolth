@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import NavCircleBtn from '../atoms/NavigationCircleButton';
 
 interface NavigationProps {
   className?: string;
@@ -119,36 +118,15 @@ export const Navigation: React.FC<NavigationProps> = ({
               className='cursor-pointer'
               onClick={(e) => scrollToSection(e, item.href)}>
               <span
-                className={`text-md font-bold ms-2 me-2 transition-colors ${
+                className={`text-sm font-bold ms-2 me-2 transition-colors ${
                   activeSection === item.href.replace('#', '')
-                    ? 'text-blue-500'
+                    ? 'text-lime-800'
                     : 'text-gray-800 hover:text-gray-300'
                 }`}>
                 {item.label}
               </span>
             </a>
           ))}
-          <NavCircleBtn
-            icon='/icons/ios_call_icon.png'
-            link='#'
-            width={30}
-            height={30}
-            altText='電話でお問い合わせ'
-          />
-          <NavCircleBtn
-            icon='/icons/line_bk_icon.png'
-            link='#'
-            width={40}
-            height={40}
-            altText='LINEでお問い合わせ'
-          />
-          <NavCircleBtn
-            icon='/icons/insta_bk_icon.png'
-            link='#'
-            width={25}
-            height={25}
-            altText='インスタグラムでお問い合わせ'
-          />
         </div>
 
         {/* Mobile Navigation */}
@@ -189,29 +167,59 @@ export const Navigation: React.FC<NavigationProps> = ({
           </button>
 
           <div
-            className={`absolute top-14 left-0 right-0 p-4 z-20 transition-all duration-300 ${
+            className={`fixed top-15.5 left-0 w-screen h-screen p-4 z-20 transition-all duration-300 ${
               isMobileMenuOpen
-                ? 'bg-white shadow-lg'
-                : 'bg-transparent shadow-none pointer-events-none'
+                ? 'bg-white'
+                : 'bg-transparent shadow-none pointer-events-none -translate-x-full'
             }`}>
             {isMobileMenuOpen && (
-              <div className='flex flex-col space-y-4'>
-                {navItems.map((item) => (
-                  <a
-                    href={item.href}
-                    key={item.href}
-                    className='cursor-pointer'
-                    onClick={(e) => scrollToSection(e, item.href)}>
-                    <span
-                      className={`text-lg font-medium transition-colors ${
-                        activeSection === item.href.replace('#', '')
-                          ? 'text-blue-500'
-                          : 'text-gray-800'
-                      }`}>
-                      {item.label}
+              <div className='flex flex-col space-y-4 h-full'>
+                {/* Profile Section */}
+                <div className='flex items-center gap-3 p-4 border-b border-gray-200'>
+                  <button className='relative w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200 flex items-center justify-center'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth='1.5'
+                      stroke='currentColor'
+                      className='w-8 h-8 text-gray-600'>
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'
+                      />
+                    </svg>
+                  </button>
+                  <div className='flex flex-col'>
+                    <span className='text-sm font-medium text-gray-900'>
+                      ログイン
                     </span>
-                  </a>
-                ))}
+                    <span className='text-xs text-gray-500'>
+                      アカウントにログイン
+                    </span>
+                  </div>
+                </div>
+
+                {/* Navigation Items */}
+                <div className='flex flex-col space-y-4'>
+                  {navItems.map((item) => (
+                    <a
+                      href={item.href}
+                      key={item.href}
+                      className='cursor-pointer'
+                      onClick={(e) => scrollToSection(e, item.href)}>
+                      <span
+                        className={`text-sm font-medium transition-colors ${
+                          activeSection === item.href.replace('#', '')
+                            ? 'text-lime-800'
+                            : 'text-gray-800'
+                        }`}>
+                        {item.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             )}
           </div>

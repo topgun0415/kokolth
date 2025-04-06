@@ -1,7 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
 import { Typography } from '../atoms/Typography';
-import { Button } from '../atoms/Button';
 import FooterSocialCard from '../molecules/FooterSocialCard';
 
 export const Footer: React.FC = () => {
@@ -15,7 +13,7 @@ export const Footer: React.FC = () => {
               variant='h4'
               weight='medium'
               color='primary'
-              font='josefin'
+              font='yugothic-medium'
               className='md:mt-10 lg:mt-2'>
               KOKOLTH
             </Typography>
@@ -23,7 +21,7 @@ export const Footer: React.FC = () => {
               variant='caption'
               weight='medium'
               color='primary'
-              font='josefin'>
+              font='yugothic-regular'>
               Tel &nbsp;
               <a
                 href='tel:0921231234'
@@ -34,9 +32,9 @@ export const Footer: React.FC = () => {
 
             <Typography
               variant='caption'
-              weight='medium'
+              weight='light'
               color='primary'
-              font='josefin'>
+              font='yugothic-regular'>
               Email &nbsp;
               <a
                 href='mailto:kokolth@example.co.jp'
@@ -46,12 +44,12 @@ export const Footer: React.FC = () => {
                 kokolth@example.co.jp
               </a>
             </Typography>
-
             <Typography
               variant='caption'
               weight='medium'
               color='primary'
-              font='josefin'>
+              font='yugothic-regular'
+              className='text-[10px]'>
               営業時間 &nbsp; 平日 8:00-19:30 &nbsp;|&nbsp; 土日祝 10:00-19:00
             </Typography>
           </div>
@@ -59,12 +57,14 @@ export const Footer: React.FC = () => {
           {/* right section */}
           <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
             <FooterSocialCard />
-            <Button size='lg' icon='email' className='mt-3'>
-              <Link href='/contact'>問い合わせ</Link>
-            </Button>
             <div className='mt-2'>
-              <Typography variant='caption' color='primary' font='josefin'>
-                2025 kokolth. All Rights Reserved.
+              <Typography
+                variant='caption'
+                weight='light'
+                color='primary'
+                font='yugothic-regular'
+                className='text-[12px]'>
+                ⓒ Kokolth. All Rights Reserved.
               </Typography>
             </div>
           </div>

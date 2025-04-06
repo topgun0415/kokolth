@@ -51,7 +51,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
         <video
           autoPlay
           muted
-          loop
           playsInline
           className='absolute inset-0 w-full h-full object-cover'
           onError={() => {
@@ -70,8 +69,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-10'
           }`}>
-          <Typography variant='h2' weight='medium' color='white' font='josefin'>
-            ココルス
+          <Typography
+            variant='h3'
+            weight='medium'
+            color='white'
+            font='josefin'
+            className='text-2xl sm:text-3xl md:text-4xl mb-2'>
+            コ コ ル ス
           </Typography>
 
           <Typography
@@ -79,7 +83,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
             weight='regular'
             color='white'
             font='josefin'
-            className='text-6xl md:text-7xl lg:text-8xl mb-4'>
+            className='text-5xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight'>
             {title}
           </Typography>
         </div>
@@ -90,13 +94,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-10'
           }`}>
-          <Typography variant='h2' weight='medium' color='white' font='josefin'>
+          <Typography
+            variant='h3'
+            weight='medium'
+            color='white'
+            font='josefin'
+            className='text-sm sm:text-2xl md:text-3xl'>
             {subtitle}
           </Typography>
         </div>
 
         <div className='absolute top-100 left-1/2 transform -translate-x-1/2'>
-          <ChevronDownIcon className='w-8 h-8 text-white animate-bounce' />
+          <ChevronDownIcon className='w-6 h-6 sm:w-8 sm:h-8 text-white animate-bounce' />
         </div>
       </div>
     </section>

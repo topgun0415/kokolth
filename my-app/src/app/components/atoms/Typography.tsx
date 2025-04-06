@@ -1,11 +1,10 @@
 import React from 'react';
 
 export type TypographyFont =
-  | 'light'
-  | 'medium'
-  | 'heavy'
-  | 'josefin'
-  | 'josefinItalic';
+  | 'yugothic-light'
+  | 'yugothic-regular'
+  | 'yugothic-medium'
+  | 'yugothic-bold';
 export type TypographyVariant =
   | 'h1'
   | 'h2'
@@ -22,7 +21,8 @@ export type TypographyColor =
   | 'accent'
   | 'white'
   | 'black'
-  | 'gray';
+  | 'gray'
+  | 'olive';
 
 interface TypographyProps {
   variant?: TypographyVariant;
@@ -93,6 +93,8 @@ export const Typography: React.FC<TypographyProps> = ({
         return 'text-black';
       case 'gray':
         return 'text-gray-600';
+      case 'olive':
+        return 'text-olive-600';
       default:
         return 'text-black';
     }
@@ -100,16 +102,14 @@ export const Typography: React.FC<TypographyProps> = ({
 
   const getFontStyles = (): string => {
     switch (font) {
-      case 'light':
-        return 'font-[GenJyuuGothicXMonospaceLight]';
-      case 'medium':
-        return 'font-[GenJyuuGothicXMonospaceMedium]';
-      case 'heavy':
-        return 'font-[GenJyuuGothicXMonospaceHeavy]';
-      case 'josefin':
-        return 'font-[JosefinSans-VariableFont]';
-      case 'josefinItalic':
-        return 'font-[JosefinSans-Italic-Variable]';
+      case 'yugothic-light':
+        return "font-[YuGothic-Light,'Yu_Gothic_Light','Yu_Gothic',Meiryo,sans-serif]";
+      case 'yugothic-regular':
+        return "font-[YuGothic,'Yu_Gothic',Meiryo,sans-serif]";
+      case 'yugothic-medium':
+        return "font-[YuGothic-Medium,'Yu_Gothic_Medium','Yu_Gothic',Meiryo,sans-serif]";
+      case 'yugothic-bold':
+        return "font-[YuGothic-Bold,'Yu_Gothic_Bold','Yu_Gothic',Meiryo,sans-serif]";
       default:
         return '';
     }

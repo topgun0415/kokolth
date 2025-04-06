@@ -4,18 +4,20 @@
 
 Domain : 未定　<br>
 Release version 0.0.0 <br>
-Release date : 未定
+Release date : 2025/05/31
 
 ### Link ✨
 
-MVP :
+MVP : <a>kokolth.vercel.app</a>
+<br>
+MAIN :
 
 ### Customer's needs 💬
 
-1. シンプルな CMS ページ
-2. メールおよび OAuth によるログインページ（未定）
-3. プレミアムコンテンツまたはサブスクリプション向けの支払い機能（未定）
-4. メールによる予約または Q&A（未定）
+1. SOCIAL ログイン & シンプルな CMS 画面
+2. LINE 通知機能
+3. チャット機能
+4. 支払い機能
 
 ---
 

@@ -142,12 +142,12 @@
 
 @media screen and (max-width: 768px) {
   .shade .right {
-    width: 98%;
+    width: 80%;
     background-size: 150% auto;
   }
 
   .shade .left {
-    width: 12%;
+    width: 10%;
   }
 }
 

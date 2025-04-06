@@ -6,7 +6,6 @@ import { Typography } from '../atoms/Typography';
 
 const ProcessSection: React.FC = () => {
   const [titleVisible, setTitleVisible] = useState(false);
-  const [subtitleVisible, setSubtitleVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -18,7 +17,6 @@ const ProcessSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => setTitleVisible(true), 200);
-            setTimeout(() => setSubtitleVisible(true), 600);
 
             observer.unobserve(sectionElement);
           }

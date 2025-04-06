@@ -45,11 +45,7 @@ const ContactSection: React.FC = () => {
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
             }`}>
-            <Typography
-              variant='h2'
-              weight='medium'
-              color='primary'
-              font='josefin'>
+            <Typography variant='h2' weight='medium' color='primary'>
               CONTACT
             </Typography>
           </div>
@@ -64,7 +60,6 @@ const ContactSection: React.FC = () => {
               variant='subtitle'
               weight='medium'
               color='primary'
-              font='josefin'
               className='mb-6'>
               お問い合わせ
             </Typography>

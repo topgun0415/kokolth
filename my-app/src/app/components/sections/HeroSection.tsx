@@ -73,7 +73,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
             variant='h3'
             weight='medium'
             color='white'
-            font='josefin'
+            font='yugothic-medium'
             className='text-2xl sm:text-3xl md:text-4xl mb-2'>
             コ コ ル ス
           </Typography>
@@ -82,7 +82,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
             variant='h1'
             weight='regular'
             color='white'
-            font='josefin'
+            font='yugothic-medium'
             className='text-5xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight'>
             {title}
           </Typography>
@@ -98,7 +98,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
             variant='h3'
             weight='medium'
             color='white'
-            font='josefin'
+            font='yugothic-medium'
             className='text-sm sm:text-2xl md:text-3xl'>
             {subtitle}
           </Typography>

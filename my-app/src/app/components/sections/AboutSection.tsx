@@ -9,7 +9,6 @@ import { motion } from 'framer-motion';
 const AboutSection: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [headingVisible, setHeadingVisible] = useState(false);
-  const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
   const [imageVisible, setImageVisible] = useState(false);
 
@@ -25,7 +24,6 @@ const AboutSection: React.FC = () => {
           if (entry.isIntersecting) {
             setTimeout(() => setImageVisible(true), 200);
             setTimeout(() => setHeadingVisible(true), 500);
-            setTimeout(() => setSubtitleVisible(true), 800);
             setTimeout(() => setContentVisible(true), 1100);
 
             observer.unobserve(sectionElement);

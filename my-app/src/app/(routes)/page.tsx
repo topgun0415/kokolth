@@ -6,7 +6,7 @@ import ProcessSection from '../components/sections/ProcessSection';
 import MenuSection from '../components/sections/MenuSection';
 import AboutSection from '../components/sections/AboutSection';
 import Shade from '../components/organisms/Shade';
-import LineChatButton from '../components/molecules/LineChatButton';
+import LineChatButton from '../components/atoms/LineChatButton';
 
 const Page: NextPage = () => {
   return (

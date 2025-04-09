@@ -24,9 +24,9 @@ export const Header: React.FC = () => {
   };
 
   const handleLoginSubmit = async (email: string, password: string) => {
-    // Implement your login logic here
+    
     try {
-      // Add your authentication logic
+      
       console.log('Logging in with:', email, password);
       setIsLoginModalOpen(false);
     } catch (error) {

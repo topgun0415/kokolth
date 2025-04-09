@@ -48,8 +48,8 @@ const AboutSection: React.FC = () => {
     'text-xs text-[#326537] font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed';
   const mobileTypographyStyle =
     'text-xs text-[#326537] font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed';
-  const highlightStyle = 'text-[#657811] font-["M_PLUS_1p",sans-serif] font-medium bg-[#e8f0e8] rounded-full';
-  const specialHighlightStyle = 'text-[#657811] font-["M_PLUS_1p",sans-serif] font-medium bg-[#e0eae0] rounded-full';
+  const highlightStyle =
+    'text-[#657811] font-["M_PLUS_1p",sans-serif] font-medium bg-[#e8f0e8] rounded-full';
 
   // 共通のコンテンツ
   const aboutContent = (
@@ -57,63 +57,60 @@ const AboutSection: React.FC = () => {
       はじめまして！
       <br />
       <br />
-      <span className={highlightStyle}>
-        管理栄養士、心理カウンセラー</span>の<span className={highlightStyle}>石松寿子</span>と申します。
+      <span className={highlightStyle}>管理栄養士、心理カウンセラー</span>の
+      <span className={highlightStyle}>石松寿子</span>と申します。
       <br />
       <br />
       <span className={highlightStyle}>４８歳</span>の時に次男を出産し、
       <span className={highlightStyle}>高齢出産</span>を希望される方のご参考に
       なることを目指して<span className={highlightStyle}>スレッズ</span>にて
-      発信をしておりましたが、この度、
-      さらに細かいご質問やお悩みに、
-      個人的に詳しく丁寧にお答えしながら
-      皆さんの人生に寄り添える存在に
-      なれればと<span className={highlightStyle}>カウンセリングルームを
-      開設</span>いたしました。
+      発信をしておりましたが、この度、 さらに細かいご質問やお悩みに、
+      個人的に詳しく丁寧にお答えしながら 皆さんの人生に寄り添える存在に
+      なれればと
+      <span className={highlightStyle}>カウンセリングルームを 開設</span>
+      いたしました。
     </>
   );
 
   // 追加のコンテンツ（OPENボタン押下時に表示）
   const expandedContent = (
     <>
-      <span className={highlightStyle}>高齢での妊娠や出産</span>は<span className={highlightStyle}>センシティブな
-      内容</span>ゆえに、誰にでもなんでも相談
-      できるわけではありません。
-      <br />
-      <br />
-      <span className={highlightStyle}>今不安な気持ちや迷いでもやもやした
-      思いを抱えているという方</span>、
-      ご自分の状況やお気持ち、ご質問を
-      どうぞメールでお聞かせください。
+      <span className={highlightStyle}>高齢での妊娠や出産</span>は
+      <span className={highlightStyle}>センシティブな 内容</span>
+      ゆえに、誰にでもなんでも相談 できるわけではありません。
       <br />
       <br />
       <span className={highlightStyle}>
-      こんなこと聞いたら失礼かなとか、
-      不謹慎かなという心配は不要です</span>。
+        今不安な気持ちや迷いでもやもやした 思いを抱えているという方
+      </span>
+      、 ご自分の状況やお気持ち、ご質問を どうぞメールでお聞かせください。
       <br />
       <br />
-      どんな内容でも、しっかりと受け止め
-      させて頂きます。
-      ご参考までに、私の考えや経験も
-      少しお伝えいたします。
+      <span className={highlightStyle}>
+        こんなこと聞いたら失礼かなとか、 不謹慎かなという心配は不要です
+      </span>
+      。
+      <br />
+      <br />
+      どんな内容でも、しっかりと受け止め させて頂きます。
+      ご参考までに、私の考えや経験も 少しお伝えいたします。
       その上で、ご自分の望む<span className={highlightStyle}>未来</span>へ、
       一緒に進んでいきましょう。
       <br />
       <br />
-      <span className={highlightStyle}>
-      管理栄養士</span>が本職なので、食生活に
+      <span className={highlightStyle}>管理栄養士</span>が本職なので、食生活に
       関するご質問も大歓迎です。
       <br />
       <br />
       <span className={highlightStyle}>
-      カウンセラーは心の専門家であると
-      同時に相談された方の最大の味方でも
-      あります</span>。
+        カウンセラーは心の専門家であると 同時に相談された方の最大の味方でも
+        あります
+      </span>
+      。
       <br />
       <br />
-      皆様のお気持ちがすっきりして、
-      爽快な気分で生きていかれますよう
-      全力で<span className={highlightStyle}>応援</span>いたします。
+      皆様のお気持ちがすっきりして、 爽快な気分で生きていかれますよう 全力で
+      <span className={highlightStyle}>応援</span>いたします。
     </>
   );
 
@@ -142,9 +139,13 @@ const AboutSection: React.FC = () => {
       <br />
       皆さんの人生に寄り添える存在に
       <br />
-      なれればと<span className={highlightStyle}>カウンセリングルームを
-      <br />
-      開設</span>いたしました。
+      なれればと
+      <span className={highlightStyle}>
+        カウンセリングルームを
+        <br />
+        開設
+      </span>
+      いたしました。
     </>
   );
 
@@ -161,18 +162,24 @@ const AboutSection: React.FC = () => {
       ありません。
       <br />
       <br />
-      <span className={highlightStyle}>今不安な気持ちや迷いでもやもやした
-      <br />
-      思いを抱えているという方</span>、
+      <span className={highlightStyle}>
+        今不安な気持ちや迷いでもやもやした
+        <br />
+        思いを抱えているという方
+      </span>
+      、
       <br />
       ご自分の状況やお気持ち、ご質問を
       <br />
       どうぞメールでお聞かせください。
       <br />
       <br />
-      <span className={highlightStyle}>こんなこと聞いたら失礼かなとか、
-      <br />
-      不謹慎かなという心配は不要です</span>。
+      <span className={highlightStyle}>
+        こんなこと聞いたら失礼かなとか、
+        <br />
+        不謹慎かなという心配は不要です
+      </span>
+      。
       <br />
       <br />
       どんな内容でも、しっかりと受け止め
@@ -193,11 +200,14 @@ const AboutSection: React.FC = () => {
       食生活に関するご質問も大歓迎です。
       <br />
       <br />
-      <span className={highlightStyle}>カウンセラーは心の専門家であると
-      <br />
-      同時に相談された方の最大の味方でも
-      <br />
-      あります</span>。
+      <span className={highlightStyle}>
+        カウンセラーは心の専門家であると
+        <br />
+        同時に相談された方の最大の味方でも
+        <br />
+        あります
+      </span>
+      。
       <br />
       <br />
       皆様のお気持ちがすっきりして、
@@ -226,7 +236,6 @@ const AboutSection: React.FC = () => {
                       variant='h3'
                       weight='medium'
                       color='primary'
-                      font='noto-medium'
                       className=' mt-7 text-center'>
                       ご挨拶
                     </Typography>
@@ -259,13 +268,12 @@ const AboutSection: React.FC = () => {
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-10'
                 }`}>
-                <div className="w-full flex justify-center px-4">
-                  <div className="w-full max-w-lg pl-6">
+                <div className='w-full flex justify-center px-4'>
+                  <div className='w-full max-w-lg pl-6'>
                     <Typography
                       variant='body'
                       weight='regular'
                       color='primary'
-                      font='noto-medium'
                       className={mobileTypographyStyle}>
                       {mobileAboutContent}
                     </Typography>
@@ -280,12 +288,11 @@ const AboutSection: React.FC = () => {
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-10'
                 }`}>
-                <div className="w-full max-w-3xl">
+                <div className='w-full max-w-3xl'>
                   <Typography
                     variant='body'
                     weight='regular'
                     color='primary'
-                    font='noto-medium'
                     className={typographyStyle}>
                     {aboutContent}
                   </Typography>
@@ -305,14 +312,13 @@ const AboutSection: React.FC = () => {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full">
-                    <div className="w-full flex justify-center px-4">
-                      <div className="w-full max-w-lg pl-6">
+                    className='w-full'>
+                    <div className='w-full flex justify-center px-4'>
+                      <div className='w-full max-w-lg pl-6'>
                         <Typography
                           variant='body'
                           weight='regular'
                           color='primary'
-                          font='noto-medium'
                           className={mobileTypographyStyle}>
                           {mobileExpandedContent}
                         </Typography>
@@ -359,13 +365,12 @@ const AboutSection: React.FC = () => {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full">
-                    <div className="w-full max-w-3xl">
+                    className='w-full'>
+                    <div className='w-full max-w-3xl'>
                       <Typography
                         variant='body'
                         weight='regular'
                         color='primary'
-                        font='noto-medium'
                         className={typographyStyle}>
                         {expandedContent}
                       </Typography>
@@ -396,5 +401,3 @@ const AboutSection: React.FC = () => {
 };
 
 export default AboutSection;
-
-

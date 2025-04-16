@@ -33,6 +33,10 @@ export default function LoginModal({
     }
   };
 
+  const handleEmailVerification = () => {
+    // Implementation of handleEmailVerification function
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -43,7 +47,7 @@ export default function LoginModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40'
+            className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 pointer-events-none'
           />
 
           {/* Modal */}
@@ -51,7 +55,7 @@ export default function LoginModal({
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-84 max-w-md z-50'>
+            className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-82 max-w-md z-50'>
             <div className='bg-white rounded-lg shadow-xl overflow-hidden'>
               {/* Form */}
               <form onSubmit={handleSubmit} className='p-6 space-y-4'>
@@ -63,26 +67,51 @@ export default function LoginModal({
                   className='mb-6'>
                   ログイン
                 </Typography>
+                <button
+                  type='button'
+                  onClick={onClose}
+                  className='absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none z-50'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-6 w-6'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'>
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M6 18L18 6M6 6l12 12'
+                    />
+                  </svg>
+                </button>
 
                 <div className='space-y-2'>
                   <label htmlFor='email' className='block text-sm font-medium '>
                     メールアドレス
                   </label>
-                  <input
-                    type='email'
-                    id='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className='w-full px-3 py-2 border border-gray-300 dark:border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
-                    required
-                  />
+                  <div className='flex items-center space-x-2'>
+                    <input
+                      type='email'
+                      id='email'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className='flex-1 px-3 py-2 border border-gray-300 dark:border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
+                      required
+                    />
+                    <button
+                      onClick={handleEmailVerification}
+                      className='bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                      送る
+                    </button>
+                  </div>
                 </div>
 
                 <div className='space-y-2'>
                   <label
                     htmlFor='password'
-                    className='block text-sm font-medium text-black'>
-                    パスワード
+                    className='block text-sm font-medium '>
+                    認証番号
                   </label>
                   <input
                     type='password'
@@ -98,7 +127,7 @@ export default function LoginModal({
                 <button
                   type='submit'
                   disabled={isLoading}
-                  className='w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold 
+                  className='w-full py-2 px-4 bg-gray-600 hover:bg-gray-700 text-white font-semibold 
                            rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
                            disabled:opacity-50 disabled:cursor-not-allowed transition-colors'>
                   {isLoading ? (

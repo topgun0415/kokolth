@@ -1,8 +1,9 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import '../(routes)/globals.css';
+import './globals.css';
 import Header from '../components/organisms/Header';
 import Footer from '../components/organisms/Footer';
+import SessionProviderWrapper from '@/providers/SessionProviderWrapper';
 
 export const metadata: Metadata = {
   title: 'ココロス',
@@ -27,9 +28,11 @@ export default function RootLayout({
   return (
     <html lang='jp'>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <SessionProviderWrapper>
+          <Header />
+          {children}
+          <Footer />
+        </SessionProviderWrapper>
       </body>
     </html>
   );

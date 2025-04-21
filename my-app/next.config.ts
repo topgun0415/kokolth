@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  useFileSystemPublicRoutes: true,
+  images: {
+    domains: ['lh3.googleusercontent.com', 'profile.line-scdn.net'],
+  },
 };
 
 export default nextConfig;

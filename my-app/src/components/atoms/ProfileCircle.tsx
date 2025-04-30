@@ -11,14 +11,6 @@ const ProfileCircle: React.FC<ProfileCircleProps> = ({ onPress }) => {
 
   const handleClick = () => {
     if (onPress) onPress();
-
-    if (isLoggedIn) {
-      console.log(isLoggedIn);
-      console.log(userImage);
-    } else {
-      console.log(isLoggedIn);
-      console.log(userImage);
-    }
   };
 
   return (

@@ -224,7 +224,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                     weight='light'
                     color='primary'
                     font='yugothic-regular'
-                    className='text-[12px] mt-68'>
+                    className='text-[12px] mt-78'>
                     ⓒ Kokolth. All Rights Reserved.
                   </Typography>
                 </div>

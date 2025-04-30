@@ -3,14 +3,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Typography } from '../atoms/Typography';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-
+import Image from 'next/image';
 interface HeroSectionProps {
   title: string;
   subtitle: string;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
-  const [videoError, setVideoError] = useState(false);
   const [titleVisible, setTitleVisible] = useState(false);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,20 +45,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle }) => {
     <section
       ref={sectionRef}
       className='relative h-screen flex items-center justify-center overflow-hidden bg-black'>
-      {/* Video Background */}
-      {!videoError && (
-        <video
-          autoPlay
-          muted
-          playsInline
-          className='absolute inset-0 w-full h-full object-cover'
-          onError={() => {
-            console.error('Video failed to load');
-            setVideoError(true);
-          }}>
-          <source src='/images/backgroundVideo.mp4' type='video/mp4' />
-        </video>
-      )}
+      {/* Background */}
+      <div className='absolute inset-0'>
+        <Image
+          src='/images/heroImage.jpeg'
+          alt='Background'
+          fill
+          sizes="100vw"
+          priority
+          quality={90}
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center'
+          }}
+        />
+      </div>
 
       {/* Content layer */}
       <div className='relative z-10 text-center px-4 max-w-4xl mb-35'>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Navigation } from '../molecules/Navigation';
 import ProfileCircle from '../atoms/ProfileCircle';
@@ -77,8 +77,6 @@ export const Header = () => {
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
         onSubmit={handleLoginSubmit}
-        onGoogleLogin={() => signIn('google', { callbackUrl: '/' })}
-        onLineLogin={() => signIn('line', { callbackUrl: '/' })}
       />
     </>
   );

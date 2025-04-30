@@ -25,7 +25,8 @@ export const MenuCard: React.FC<MenuCardProps> = ({
           src={imageUrl}
           alt={alt}
           fill
-          objectFit='cover'
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 100vw, 33vw"
           className='rounded-lg'
         />
       </div>

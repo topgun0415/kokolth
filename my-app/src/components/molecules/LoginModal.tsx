@@ -3,31 +3,52 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Typography } from '../atoms/Typography';
+import { signIn } from 'next-auth/react';
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (email: string, otpCodes: string) => void;
-  onLineLogin?: () => void;
-  onGoogleLogin?: () => void;
+  onSubmit: (email: string, password: string) => void;
+  callbackUrl?: string;
 }
 
 export default function LoginModal({
   isOpen,
   onClose,
-  onSubmit,
-  onLineLogin,
-  onGoogleLogin,
+  callbackUrl = '/'
 }: LoginModalProps) {
   const [email, setEmail] = useState('');
-  const [otpCodes, setOtpCodes] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [magicLinkSent, setMagicLinkSent] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle email login
+  const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
     try {
-      await onSubmit(email, otpCodes);
+      // MagicLink status check
+      const result = await signIn('mail', { email, password, redirect: false })
+
+      if (result?.error === 'magic_link_sent') {
+        setMagicLinkSent(true);
+      }
+
+
+
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // Social login handler (provider: 'google' | 'line')
+  const handleSocialLogin = async (provider: 'google' | 'line') => {
+    setIsLoading(true);
+    try {
+      await signIn(provider, { callbackUrl });
+    } catch {
+      throw new Error('ソーシャルログインに失敗しました');
     } finally {
       setIsLoading(false);
     }
@@ -54,7 +75,7 @@ export default function LoginModal({
             className='fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-82 max-w-md z-50'>
             <div className='bg-white rounded-lg shadow-xl overflow-hidden'>
               {/* Form */}
-              <form onSubmit={handleSubmit} className='p-6 space-y-4'>
+              <form onSubmit={handleEmailLogin} className='p-6 space-y-4'>
                 <Typography
                   variant='h3'
                   weight='bold'
@@ -105,10 +126,10 @@ export default function LoginModal({
                     パスワード
                   </label>
                   <input
-                    type='number'
-                    id='otpCodes'
-                    value={otpCodes}
-                    onChange={(e) => setOtpCodes(e.target.value)}
+                    type='password'
+                    id='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className='w-full px-3 py-2 border border-gray-500 rounded-md 
                              focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
                     required
@@ -146,6 +167,14 @@ export default function LoginModal({
                     'ログイン'
                   )}
                 </button>
+                <p className='text-[10px] text-gray-500'>※初めて利用する方は、メールアドレスと任意のパスワードを入力</p>
+
+                {/* Magic Link Sent Message */}
+                {magicLinkSent && (
+                  <div className="p-4 mt-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                    <p className="font-medium">登録メールを送信しました!</p>
+                  </div>
+                )}
 
                 {/* Divider */}
                 <div className='relative my-6'>
@@ -162,10 +191,11 @@ export default function LoginModal({
                   {/* LINE Login Button */}
                   <button
                     type='button'
-                    onClick={onLineLogin}
+                    onClick={() => handleSocialLogin('line')}
+                    disabled={isLoading}
                     className='w-full flex items-center justify-center px-4 py-2 
                              bg-[#00B900] hover:bg-[#00a000] text-white rounded-md 
-                             transition-colors duration-200'>
+                             transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'>
                     <svg
                       className='w-6 h-6 mr-2'
                       viewBox='0 0 24 24'
@@ -178,10 +208,11 @@ export default function LoginModal({
                   {/* Google Login Button */}
                   <button
                     type='button'
-                    onClick={onGoogleLogin}
+                    onClick={() => handleSocialLogin('google')}
+                    disabled={isLoading}
                     className='w-full flex items-center justify-center px-4 py-2 
                              bg-white border border-gray-300 rounded-md hover:bg-gray-50 
-                             transition-colors duration-200'>
+                             transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'>
                     <svg className='w-6 h-6 mr-2' viewBox='0 0 24 24'>
                       <path
                         fill='#4285F4'

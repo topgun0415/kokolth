@@ -1,4 +1,6 @@
 import type { NextPage } from 'next';
+import Header from '../components/organisms/Header';
+import Footer from '../components/organisms/Footer';
 import HeroSection from '../components/sections/HeroSection';
 import ConceptSection from '../components/sections/ConceptSection';
 import ServiceSection from '../components/sections/ServiceSection';
@@ -12,7 +14,8 @@ const Page: NextPage = () => {
   return (
     <div className='relative'>
       <Shade />
-
+      <Header />
+      
       {/* HERO SECTION - Above Shade */}
       <div className='relative z-20'>
         <HeroSection title='KOKOLTH' subtitle='mail counseling room' />
@@ -44,6 +47,7 @@ const Page: NextPage = () => {
       </div>
 
       <LineChatButton />
+      <Footer />
     </div>
   );
 };

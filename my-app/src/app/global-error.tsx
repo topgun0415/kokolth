@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Error } from "@/components/organisms/Error";
 import Footer from "@/components/organisms/Footer";
 

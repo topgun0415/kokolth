@@ -54,8 +54,6 @@ export const authOptions: NextAuthOptions = {
             }
           });
 
-          
-
           if (magicLinkError) {
             throw new Error('認証メールを送信できませんでした');
           }
@@ -64,6 +62,17 @@ export const authOptions: NextAuthOptions = {
           throw new Error('magic_link_sent');
         }
 
+        // const  { data, error: loginError } = await supabase.auth.signInWithPassword({
+        //   email: email,
+        //   password: password
+        // });
+        
+        
+
+        
+        
+        
+       
         return null;
       }
     })
@@ -156,8 +165,6 @@ export const authOptions: NextAuthOptions = {
           // Email Login(Custom)
           }else if(provider === 'mail') {
             
-            console.log('mail login');
-
           }
             
         } catch {

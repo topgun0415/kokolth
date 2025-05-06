@@ -36,7 +36,7 @@ const ProcessSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className='py-12 bg-gray-50'>
+    <section ref={sectionRef} className='py-12 bg-gray-100'>
       <div className='text-center mb-12'>
         <div
           className={`transform transition-all duration-1000 ease-out ${
@@ -45,7 +45,7 @@ const ProcessSection: React.FC = () => {
               : 'opacity-0 translate-y-10'
           }`}>
           <Typography
-            variant='h3'
+            variant='h4'
             weight='medium'
             color='primary'
             font='yugothic-medium'

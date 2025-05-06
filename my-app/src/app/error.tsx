@@ -1,14 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Error } from '@/components/organisms/Error';
-import Footer from '@/components/organisms/Footer';
+import { Error } from '../components/organisms/Error';
 
 export default function ErrorPage() {
-  return (
-    <>
-      <Error status={'500'} />
-      <Footer />
-    </>
-  );
+  return <Error status={'500'} />;
 }

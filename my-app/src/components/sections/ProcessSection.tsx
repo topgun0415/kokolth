@@ -45,7 +45,7 @@ const ProcessSection: React.FC = () => {
               : 'opacity-0 translate-y-10'
           }`}>
           <Typography
-            variant='h4'
+            variant='h3'
             weight='medium'
             color='primary'
             font='yugothic-medium'

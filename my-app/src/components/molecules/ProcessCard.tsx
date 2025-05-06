@@ -116,10 +116,10 @@ const ProcessCard = () => {
     <>
       <div
         ref={cardRef}
-        className={`w-full max-w-3xl mx-auto shadow-md rounded-lg overflow-hidden transform transition-all duration-1000 ease-out ${
+        className={`w-full max-w-3xl mx-auto rounded-lg overflow-hidden transform transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-        <div className='bg-gray-50  border-gray-200 rounded-lg p-3 md:p-8 relative '>
+        <div className='rounded-lg p-3 md:p-8 relative '>
           <ol className='relative list-none p-0 m-0'>
             {steps.map((step, index) => (
               <li key={index} className='relative pb-12 last:pb-0'>

@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '../components/organisms/Header';
-import Footer from '../components/organisms/Footer';
 import SessionProviderWrapper from '@/providers/SessionProviderWrapper';
 
 export const metadata: Metadata = {
@@ -29,9 +27,7 @@ export default function RootLayout({
     <html lang='jp'>
       <body>
         <SessionProviderWrapper>
-          <Header />
           {children}
-          <Footer />
         </SessionProviderWrapper>
       </body>
     </html>

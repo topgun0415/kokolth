@@ -181,16 +181,20 @@ export const Navigation: React.FC<NavigationProps> = ({
             }`}>
             {isMobileMenuOpen && (
               <div className='flex flex-col space-y-4 h-full'>
+                
                 {/* Profile Section */}
                 <div className='flex items-center gap-3 p-4 border-b border-gray-200'>
-                  <button className='relative w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200 flex items-center justify-center'>
-                    <Image
-                      src='/icons/logout.webp'
-                      alt='Profile'
-                      fill
-                      className='object-cover'
-                    />
-                  </button>
+                  <div className='relative w-12 h-12 overflow-hidden'>
+                    <button className='absolute inset-0 bg-gray-200 hover:bg-gray-300 transition-colors duration-200 flex items-center justify-center'>
+                      <Image
+                        src='/icons/logout.webp'
+                        alt='Profile'
+                        width={48}
+                        height={48}
+                        className='object-cover'
+                      />
+                    </button>
+                  </div>
                   <div className='flex flex-col'>
                     <span className='text-sm font-medium text-gray-900'>
                       ログイン
@@ -202,31 +206,36 @@ export const Navigation: React.FC<NavigationProps> = ({
                 </div>
 
                 {/* Navigation Items */}
-                <div className='flex flex-col space-y-4'>
-                  {navItems.map((item) => (
-                    <a
-                      href={item.href}
-                      key={item.href}
-                      className='cursor-pointer'
-                      onClick={(e) => scrollToSection(e, item.href)}>
-                      <span
-                        className={`text-sm font-medium transition-colors ${
-                          activeSection === item.href.replace('#', '')
-                            ? 'text-lime-800'
-                            : 'text-gray-800'
-                        }`}>
-                        {item.label}
-                      </span>
-                    </a>
-                  ))}
-                  <Typography
-                    variant='caption'
-                    weight='light'
-                    color='primary'
-                    font='yugothic-regular'
-                    className='text-[12px] mt-78'>
-                    ⓒ Kokolth. All Rights Reserved.
-                  </Typography>
+                <div className='flex flex-col justify-between h-full'>
+                  <div className='flex flex-col space-y-4'>
+                    {navItems.map((item) => (
+                      <a
+                        href={item.href}
+                        key={item.href}
+                        className='cursor-pointer'
+                        onClick={(e) => scrollToSection(e, item.href)}>
+                        <span
+                          className={`text-sm font-medium transition-colors ${
+                            activeSection === item.href.replace('#', '')
+                              ? 'text-lime-800'
+                              : 'text-gray-800'
+                          }`}>
+                          {item.label}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                  
+                  <div className='mt-auto pt-4 mb-18'>
+                    <Typography
+                      variant='caption'
+                      weight='light'
+                      color='primary'
+                      font='yugothic-regular'
+                      className='text-[12px]'>
+                      ⓒ Kokolth. All Rights Reserved.
+                    </Typography>
+                  </div>
                 </div>
               </div>
             )}

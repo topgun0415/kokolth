@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Header from '../components/organisms/Header';
 import HeroSection from '../components/sections/HeroSection';
 import ConceptSection from '../components/sections/ConceptSection';
 import ServiceSection from '../components/sections/ServiceSection';
@@ -7,12 +8,13 @@ import MenuSection from '../components/sections/MenuSection';
 import AboutSection from '../components/sections/AboutSection';
 import Shade from '../components/organisms/Shade';
 import LineChatButton from '../components/atoms/LineChatButton';
+import Footer from '../components/organisms/Footer';
 
 const Page: NextPage = () => {
   return (
     <div className='relative'>
+      <Header />
       <Shade />
-
       {/* HERO SECTION - Above Shade */}
       <div className='relative z-20'>
         <HeroSection title='KOKOLTH' subtitle='mail counseling room' />
@@ -42,8 +44,8 @@ const Page: NextPage = () => {
       <div id='menu' className='relative z-20'>
         <MenuSection />
       </div>
-
       <LineChatButton />
+      <Footer />
     </div>
   );
 };

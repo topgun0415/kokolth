@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-04-10', 
+  apiVersion: '2025-04-30.basil', 
 });
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // Check if the user exists
     if (!userId) {
       return NextResponse.json(
-        { error: 'ユーザー情報が必要です。' },
+        { error: 'ユーザー情報が必要です' },
         { status: 400 }
       );
     }
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     
     if (userError || !userData) {
       return NextResponse.json(
-        { error: 'ユーザーが見つかりません。' },
+        { error: 'ユーザーが見つかりません' },
         { status: 404 }
       );
     }
@@ -67,9 +67,23 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch {
+  } catch (error) {
+    
+    if (error instanceof Stripe.errors.StripeCardError) {
+      return NextResponse.json(
+        { error: 'カード情報に問題があります', details: error.message },
+        { status: 400 }
+      );
+    
+    } else if (error instanceof Stripe.errors.StripeInvalidRequestError) {
+      return NextResponse.json(
+        { error: '不正なリクエストです', details: error.message },
+        { status: 400 }
+      );
+    }
+    
     return NextResponse.json(
-      { error: '決済処理中にエラーが発生しました。' },
+      { error: '決済処理中にエラーが発生しました' },
       { status: 500 }
     );
   }
@@ -78,7 +92,7 @@ export async function POST(req: Request) {
 // API TEST ENDPOINT
 export async function GET() {
   return NextResponse.json(
-    { message: 'Stripe payment API is working properly.' },
+    { message: 'Stripe test API success' },
     { status: 200 }
   );
   

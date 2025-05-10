@@ -5,7 +5,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error(
-    'Supabaseの環境変数が不足しています'
+    'Supabaseの環境変数を設定してください'
   );
 }
 

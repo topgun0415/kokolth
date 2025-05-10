@@ -71,7 +71,7 @@ const ProcessCard = () => {
         'まずはお問い合わせフォームより<br />お申し込みをお願いいたします。',
       hasLinkButton: true,
       linkButtonText: 'お申し込みはこちら',
-      linkButtonUrl: '',
+      linkButtonUrl: '/payment',
       accordionItems: [
         {
           label: '料金について',

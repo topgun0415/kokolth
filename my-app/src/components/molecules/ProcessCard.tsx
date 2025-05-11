@@ -1,6 +1,9 @@
 'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { useAuthStore } from '@/store/useAuthStore';
+import { toast } from 'react-hot-toast';
 
 interface AdditionalContent {
   type: 'heading' | 'list';
@@ -25,9 +28,8 @@ interface Step {
 }
 
 const ProcessCard = () => {
-  const [expandedAccordions, setExpandedAccordions] = useState<
-    Record<string, boolean>
-  >({});
+  const { isLoggedIn } = useAuthStore();
+  const [expandedAccordions, setExpandedAccordions] = useState<Record<string, boolean>>({});
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -152,6 +154,15 @@ const ProcessCard = () => {
                       {step.hasLinkButton && (
                         <a
                           href={step.linkButtonUrl}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            
+                            if (isLoggedIn) {
+                              window.location.href = step.linkButtonUrl || '';
+                            } else {
+                              toast.error('ログインが必要です');
+                            }
+                          }}
                           className='inline-flex items-center justify-between bg-gray-600 text-white px-4 py-2 text-sm rounded-md mb-4 w-full'>
                           <span>{step.linkButtonText}</span>
                           <span className='ml-2'>→</span>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const LineAddFriendButton: React.FC = () => {
   const handleAddFriend = () => {
-    window.open('https://line.me/R/ti/p/topgun0415@naver.com', '_blank');
+    window.open('https://page.line.me/497jkrfq', '_blank');
   };
 
   return (

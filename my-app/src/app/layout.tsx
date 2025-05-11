@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import SessionProviderWrapper from '@/providers/SessionProviderWrapper';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
   title: 'ココロス',
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang='jp'>
       <body>
         <SessionProviderWrapper>
+          <Toaster position='top-center' reverseOrder={false} />
           {children}
         </SessionProviderWrapper>
       </body>

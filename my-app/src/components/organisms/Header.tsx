@@ -6,6 +6,7 @@ import { useAuthStore } from '@/store/useAuthStore';
 import { Navigation } from '../molecules/Navigation';
 import ProfileCircle from '../atoms/ProfileCircle';
 import LoginModal from '../molecules/LoginModal';
+import { supabaseClient } from '@/lib/supabaseClient';
 
 export const Header = () => {
   const { data: session, status } = useSession();
@@ -17,8 +18,37 @@ export const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
+
+    // User logged in
     if (status === 'authenticated') {
-      setLogin(session?.user?.name ?? '', session?.user?.image ?? '');
+      // create supabase client
+      const supabase = supabaseClient;
+
+      // When the user is authenticated, select the user's info from the supabase
+      const fetchUserFromSupabase = async () => {
+
+        let query = supabase.from('user').select('id, name, is_admin');
+
+        if (session?.user?.email) {
+          query = query.eq('email', session.user.email);
+        } else if (session?.user?.id) {
+          query = query.eq('provider_id', session.user.id);
+        }
+        
+        const { data: userData } = await query.single();
+
+        if (userData) {
+          setLogin({
+            id: userData.id,
+            name: userData.name,
+            image: session?.user?.image || '/icons/defaultProfile.webp',
+            is_admin: userData.is_admin,
+            status: 'active',
+          });
+        } 
+      }
+      fetchUserFromSupabase();
+    // User logged out
     } else if (status === 'unauthenticated') {
       setLogout();
     }

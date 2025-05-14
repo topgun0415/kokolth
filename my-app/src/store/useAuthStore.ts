@@ -1,18 +1,34 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+type User = {
+  id: string;
+  name: string;
+  image: string;
+  email?: string;
+  status: 'active' | 'inactive';
+  is_admin: boolean;
+}
 
 type AuthState = {
+  user: User;
   isLoggedIn: boolean;
-  userName: string;
-  userImage: string;
-  setLogin: (userName: string, userImage: string) => void;
+  setLogin: (userInfo: User) => void;
   setLogout: () => void;
 };
 
-export const useAuthStore = create<AuthState>((set) => ({
-  isLoggedIn: false,
-  userName: '',
-  userImage: '',
-  setLogin: (userName, userImage) =>
-    set({ isLoggedIn: true, userName, userImage }),
-  setLogout: () => set({ isLoggedIn: false, userName: '', userImage: '' }),
-}));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: { id: '', name: '', image: '', status: 'active', is_admin: false },
+      isLoggedIn: false,
+      setLogin: (user: User) => 
+        set({ user, isLoggedIn: true }),
+      setLogout: () => 
+        set({ user: { id:'', name: '', image: '', status: 'inactive', is_admin: false }, isLoggedIn: false }),
+    }),
+    {
+      name: 'auth-storage',
+    }
+  )
+);

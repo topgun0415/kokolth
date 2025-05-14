@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { useAuthStore } from '@/store/useAuthStore';
 import Image from 'next/image';
 import { Typography } from '../atoms/Typography';
 
@@ -13,12 +11,9 @@ export const Navigation: React.FC<NavigationProps> = ({
   className = '',
   setNavBackground,
 }) => {
-  const { data: session, status } = useSession();
-  const setLogin = useAuthStore((state) => state.setLogin);
-  const setLogout = useAuthStore((state) => state.setLogout);
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-
   const navItems = useMemo(
     () => [
       { label: 'コンセプト', href: '#concept' },
@@ -181,6 +176,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             }`}>
             {isMobileMenuOpen && (
               <div className='flex flex-col space-y-4 h-full'>
+
                 {/* Profile Section */}
                 <div className='flex items-center gap-3 p-4 border-b border-gray-200'>
                   <button className='relative w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200 flex items-center justify-center'>

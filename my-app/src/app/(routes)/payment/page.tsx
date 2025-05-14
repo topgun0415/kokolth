@@ -1,8 +1,23 @@
 import React from 'react';
 import Payment from '@/components/organisms/Payment';
 import { createPaymentIntent } from '@/lib/stripe';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { createClient } from '@supabase/supabase-js';
+import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 export default async function PaymentPage() {
+  
+  // Get the user's session
+  const session = await getServerSession(authOptions);
+  const loginedUserInfo = session?.user?.email ?? session?.user?.id;
+  
+
+  
+
+  
+
+
   try {
     const { clientSecret } = await createPaymentIntent({
       amount: 2000,
@@ -14,7 +29,6 @@ export default async function PaymentPage() {
       },
       userName: 'Philip Lee',
     });
-    
     return (
       <main className='min-h-screen'>
         {clientSecret && <Payment clientSecret={clientSecret} />}

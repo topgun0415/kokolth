@@ -30,8 +30,7 @@ export async function createPaymentIntent(params: CreatePaymentIntentParams) {
     return {
       clientSecret: paymentIntent.client_secret,
     };
-  } catch (error) {
-    console.error('Payment intent creation failed:', error);
-    throw error;
+  } catch {
+    throw new Error('決済準備に失敗しました。');
   }
 }

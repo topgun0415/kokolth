@@ -7,8 +7,7 @@ interface ProfileCircleProps {
 }
 
 const ProfileCircle: React.FC<ProfileCircleProps> = ({ onPress }) => {
-  const { isLoggedIn, userImage } = useAuthStore();
-
+  const { isLoggedIn, userInfo } = useAuthStore();
   const handleClick = () => {
     if (onPress) onPress();
   };
@@ -20,7 +19,7 @@ const ProfileCircle: React.FC<ProfileCircleProps> = ({ onPress }) => {
       <Image
         src={
           isLoggedIn
-            ? userImage || '/icons/default-profile.webp'
+            ? userInfo.image || '/icons/default-profile.webp'
             : '/icons/defaultProfile.webp'
         }
         alt='Profile'

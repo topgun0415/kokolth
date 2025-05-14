@@ -1,19 +1,17 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
-// Supabase client initialize
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+// Supabase Admin initialize
+const supabase = supabaseAdmin;
 
-// Stripe 인스턴스 초기화
+// Stripe Instance initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16' as Stripe.LatestApiVersion,
+  apiVersion: '2025-04-30.basil', 
 });
 
 // Webhook secret key
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_KEY!;
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -26,7 +24,7 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
-    // 서명 검증
+    // Signature verification
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -34,55 +32,85 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
-  // 이벤트 타입에 따른 처리
+  // Process event based on type
   try {
     switch (event.type) {
+      // Payment Intent Succeeded
       case 'payment_intent.succeeded':
         await handlePaymentIntentSucceeded(event.data.object as Stripe.PaymentIntent);
         break;
-      
+      // Payment Intent Failed
       case 'payment_intent.payment_failed':
         await handlePaymentIntentFailed(event.data.object as Stripe.PaymentIntent);
         break;
-      
+      // Checkout Session Completed
       case 'checkout.session.completed':
         await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session);
         break;
-      
-      // 다른 이벤트 핸들러는 필요한 경우 구현
-      
-      default:
-        console.log(`Unhandled event type: ${event.type}`);
+      // refund
+      case 'charge.refunded':
+        await handleChargeRefunded(event.data.object as Stripe.Charge);
+        break;
     }
 
     return NextResponse.json({ received: true }, { status: 200 });
-  } catch (error) {
-    console.error(`Error processing webhook: ${error}`);
+  } catch {
     return NextResponse.json(
-      { error: 'Webhook handler failed' },
+      { error: '決済処理中にエラーが発生しました' },
       { status: 500 }
     );
   }
 }
 
-// 결제 성공 처리
+// Handle Payment Success Processing
 async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent) {
-  console.log(`PaymentIntent succeeded: ${paymentIntent.id}`);
-  
   try {
-    // Supabase payments 테이블에 결제 정보 저장
+    // SELECT USER ID
+    const userId = paymentIntent.metadata?.user_id;
+    
+    if (!userId) {
+      console.error('ユーザーIDが見つかりませんでした');
+    }
+
+    const timestamp = new Date().toISOString();
+    let receiptUrl:string | null = null;
+    if (paymentIntent.latest_charge) {
+      const charge = await stripe.charges.retrieve(paymentIntent.latest_charge as string);
+      receiptUrl = charge.receipt_url;
+    }
+
+    /* 
+    id = transaction id (supabase automatically generated)
+    user_id = user id (from metadata)
+    external_id = payment intent id (from stripe)
+    status = paid
+    amount = payment amount
+    currency = payment currency (jpy)
+    method = payment method (card, paypay, etc)
+    receipt_url = payment receipt url (from stripe)
+    paid_at = payment date
+    due_date = due date (if needed)
+    created_at = created date
+    updated_at = updated date
+    is_deleted = false (default)
+    */
+   
+    // INSERT success payment Info into DB
     const { error } = await supabase
-      .from('payments')
+      .from('payment')
       .insert({
-        payment_intent_id: paymentIntent.id,
+        user_id: userId,
+        external_id: paymentIntent.id,
+        status: 'paid',
         amount: paymentIntent.amount,
         currency: paymentIntent.currency,
-        status: 'succeeded',
-        customer_id: paymentIntent.customer as string || null,
-        customer_email: paymentIntent.receipt_email || null,
-        payment_method: paymentIntent.payment_method_types?.[0] || null,
-        created_at: new Date(paymentIntent.created * 1000).toISOString(),
-        metadata: paymentIntent.metadata || null
+        method: paymentIntent.payment_method_types?.[0] || 'unknown',
+        receipt_url: receiptUrl,
+        paid_at: timestamp,
+        due_date: null,
+        created_at: timestamp,
+        updated_at: timestamp,
+        is_deleted: false
       });
 
     if (error) {
@@ -96,18 +124,33 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
   }
 }
 
-// 결제 실패 처리
+// Handle Payment Intent Failed
 async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
   console.log(`PaymentIntent failed: ${paymentIntent.id}`);
   console.log(`Failure reason: ${paymentIntent.last_payment_error?.message}`);
   
   try {
-    // Supabase payments 테이블에 실패한 결제 정보 저장
+    // INSERT failed payment Info into DB
     const { error } = await supabase
       .from('payments')
       .insert({
-        payment_intent_id: paymentIntent.id,
+        user_id: userId,
+        external_id: paymentIntent.id,
+        status: 'paid',
         amount: paymentIntent.amount,
+        currency: paymentIntent.currency,
+        method: paymentIntent.payment_method_types?.[0] || 'unknown',
+        receipt_url: receiptUrl,
+        paid_at: timestamp,
+        due_date: null,
+        created_at: timestamp,
+        updated_at: timestamp,
+        is_deleted: false
+
+
+
+        payment_intent_id: paymentIntent.id,
+        amount: paymentIntent.amount, 
         currency: paymentIntent.currency,
         status: 'failed',
         customer_id: paymentIntent.customer as string || null,

@@ -149,7 +149,7 @@ const Payment: React.FC<PaymentProps> = ({
             </Elements>
           ) : (
             <div className="text-center text-gray-500 p-4">
-              支払い情報を読み込めません(Client secretがありません)
+              支払い情報を読み込めません
             </div>
           )}
           <StripeFooter />

@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { supabaseClient } from '@/lib/supabaseClient';
 
+// Supabase Admin initialize
+const supabase = supabaseClient;
+
+// Stripe Instance initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-04-30.basil', 
 });
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const supabase = createClient(supabaseUrl!, supabaseKey!);
 
 export async function POST(req: Request) {
   try {
@@ -56,6 +56,22 @@ export async function POST(req: Request) {
         userId,
       },
     });
+
+    /* 
+    id = transaction id (supabase automatically generated)
+    user_id = user id (from metadata)
+    external_id = payment intent id (from stripe)
+    status = paid
+    amount = payment amount
+    currency = payment currency (jpy)
+    method = payment method (card, paypay, etc)
+    receipt_url = payment receipt url (from stripe)
+    paid_at = payment date
+    due_date = due date (if needed)
+    created_at = created date
+    updated_at = updated date
+    is_deleted = false (default)
+    */
 
     // Save Payment Information (Using Fixed Information)
     await supabase.from('payment').insert({

@@ -18,7 +18,7 @@ export const Error: React.FC<ErrorProps> = ({ status }) => {
   }, []);
 
   const getMessage = (status: string, message?: string) => {
-    if (status === '404') return 'ページが見つかれませんでした';
+    if (status === '404') return 'ページが見つかりませんでした';
     if (status === '500') return 'サーバに問題が発生しました';
 
     return message;

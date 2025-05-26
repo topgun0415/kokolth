@@ -3,52 +3,88 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Typography } from '../atoms/Typography';
-import { signIn } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
+import { supabaseClient } from '@/lib/supabase/supabaseClient';
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (email: string, password: string) => void;
-  callbackUrl?: string;
 }
 
 export default function LoginModal({
   isOpen,
   onClose,
-  callbackUrl = '/'
 }: LoginModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [magicLinkSent, setMagicLinkSent] = useState(false);
+  const [mailLinkSent, setMailLinkSent] = useState(false);
 
-  // Handle email login
+  // Handle email login with Supabase Auth
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // MagicLink status check
-      const result = await signIn('mail', { email, password, redirect: false })
+      const supabase = supabaseClient;
+      // Try to sign in first
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-      if (result?.error === 'magic_link_sent') {
-        setMagicLinkSent(true);
+      // If sign in fails, try to sign up
+      if (signInError) {
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+          }
+        });
+
+        if (signUpError?.message === 'Invalid login credentials') {
+          toast.error('メールアドレスまたはパスワードが間違っています');
+        } else if (signUpError?.message === 'Email not confirmed') {
+          toast.error('メール認証がまだ完了していません');
+        } else {
+          setMailLinkSent(true);
+        }
+
+      } else {
+        onClose(); // Close modal on successful login
+        // GlobalStateManager will automatically detect the auth state change
       }
 
-
-
+    } catch {
+      toast.error('ログインに失敗しました');
     } finally {
       setIsLoading(false);
     }
   };
-  
-  // Social login handler (provider: 'google' | 'line')
+
+  // Handle social login with Supabase Auth
   const handleSocialLogin = async (provider: 'google' | 'line') => {
     setIsLoading(true);
     try {
-      await signIn(provider, { callbackUrl });
-    } catch {
-      throw new Error('ソーシャルログインに失敗しました');
+      const { supabaseClient } = await import('@/lib/supabase/supabaseClient');
+      const supabase = supabaseClient;
+      
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: provider === 'line' ? 'google' : provider,
+        options: {
+          redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+        }
+      });
+
+      if (error) {
+        toast.error('ソーシャルログインに失敗しました: ' + error.message);
+      }
+      // OAuth will handle the redirect, so we don't close the modal here
+    } catch (error) {
+      console.error('Social login error:', error);
+      toast.error('ソーシャルログインに失敗しました');
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +100,7 @@ export default function LoginModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 pointer-events-none'
+            className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40'
           />
 
           {/* Modal */}
@@ -169,10 +205,10 @@ export default function LoginModal({
                 </button>
                 <p className='text-[10px] text-gray-500'>※初めて利用する方は、メールアドレスと任意のパスワードを入力</p>
 
-                {/* Magic Link Sent Message */}
-                {magicLinkSent && (
+                {/* Mail Link Sent Message */}
+                {mailLinkSent && (
                   <div className="p-4 mt-4 text-sm text-green-700 bg-green-100 rounded-lg">
-                    <p className="font-medium">登録メールを送信しました!</p>
+                    <p className="font-medium">登録メールを送信しました</p>
                   </div>
                 )}
 
@@ -242,3 +278,4 @@ export default function LoginModal({
     </AnimatePresence>
   );
 }
+

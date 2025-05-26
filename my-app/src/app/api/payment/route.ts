@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { supabaseClient } from '@/lib/supabaseClient';
+import { supabaseClient } from '@/lib/supabase/supabaseClient';
 
 // Supabase Admin initialize
 const supabase = supabaseClient;

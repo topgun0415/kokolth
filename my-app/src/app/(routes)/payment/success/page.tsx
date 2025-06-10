@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+export const dynamic = 'force-dynamic';
+
+import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,7 +15,18 @@ interface PaymentIntentData {
   currency: string;
 }
 
-const SuccessPage: React.FC = () => {
+const LoadingSpinner = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50">
+    <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-sm">
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <p className="text-gray-600">決済情報を確認中...</p>
+      </div>
+    </div>
+  </div>
+);
+
+const SuccessPageContent: React.FC = () => {
   const [status, setStatus] = useState<'loading' | 'success'>('loading');
   const [paymentIntent, setPaymentIntent] = useState<PaymentIntentData | null>(null);
   const searchParams = useSearchParams();
@@ -49,16 +62,7 @@ const SuccessPage: React.FC = () => {
   }, [searchParams]);
   
   if (status === 'loading') {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50">
-        <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-sm">
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            <p className="text-gray-600">決済情報を確認中...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   
   return (
@@ -102,6 +106,14 @@ const SuccessPage: React.FC = () => {
         <p className="mt-1">© {new Date().getFullYear()} KOKOLTH</p>
       </div>
     </div>
+  );
+};
+
+const SuccessPage: React.FC = () => {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <SuccessPageContent />
+    </Suspense>
   );
 };
 

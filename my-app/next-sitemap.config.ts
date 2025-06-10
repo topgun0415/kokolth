@@ -1,6 +1,4 @@
-import { IConfig } from 'next-sitemap';
-
-const config: IConfig = {
+const config = {
   siteUrl: 'https://kokolth.com',
   generateRobotsTxt: true,
   outDir: 'public',

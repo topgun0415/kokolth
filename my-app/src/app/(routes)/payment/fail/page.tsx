@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+export const dynamic = 'force-dynamic';
+
+import React, { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,19 +15,28 @@ interface PaymentErrorData {
   };
 }
 
-const FailPage: React.FC = () => {
+const LoadingSpinner = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50">
+    <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-sm">
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <p className="text-gray-600">情報を読み込んでいます...</p>
+      </div>
+    </div>
+  </div>
+);
+
+const FailPageContent: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<PaymentErrorData | null>(null);
   const searchParams = useSearchParams();
   
   useEffect(() => {
     const fetchPaymentError = async () => {
-      
       const errorType = searchParams.get('error_type');
       const paymentIntentId = searchParams.get('payment_intent');
       
       if (!errorType && !paymentIntentId) {
-       
         setError({ message: '不明なエラーが発生しました' });
         setLoading(false);
         return;
@@ -33,12 +44,10 @@ const FailPage: React.FC = () => {
       
       try {
         if (paymentIntentId) {
-          
           const response = await fetch(`/api/payment/error?payment_intent=${paymentIntentId}`);
           const data = await response.json();
           setError(data.error || { message: '決済が拒否されました' });
         } else {
-          
           const errorMessage = getErrorMessage(errorType || "");
           setError({ 
             code: errorType || undefined,
@@ -76,16 +85,7 @@ const FailPage: React.FC = () => {
   };
   
   if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50">
-        <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-sm">
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            <p className="text-gray-600">情報を読み込んでいます...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
   
   return (
@@ -135,6 +135,14 @@ const FailPage: React.FC = () => {
         <p className="mt-1">© {new Date().getFullYear()} KOKOLTH</p>
       </div>
     </div>
+  );
+};
+
+const FailPage: React.FC = () => {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <FailPageContent />
+    </Suspense>
   );
 };
 

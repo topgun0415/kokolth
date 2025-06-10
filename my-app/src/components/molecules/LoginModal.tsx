@@ -19,7 +19,8 @@ export default function LoginModal({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [mailLinkSent, setMailLinkSent] = useState(false);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
 
   // Handle email login with Supabase Auth
   const handleEmailLogin = async (e: React.FormEvent) => {
@@ -27,63 +28,76 @@ export default function LoginModal({
     setIsLoading(true);
 
     try {
-      const supabase = supabaseClient;
-      // Try to sign in first
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      // Login API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
       });
 
-      // If sign in fails, try to sign up
-      if (signInError) {
-        const { error: signUpError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+      const data = await response.json();
+      if (data.error) {
+        if (data.errorType === 'Email not confirmed') {
+          setMessage('メール認証がまだ完了していません');
+          setMessageType('error');
+        } else if (data.errorType === 'Invalid login credentials') {
+          // Email check & send email API
+          const emailResponse = await fetch('/api/auth/email', { 
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+          });
+
+          
+          const emailData = await emailResponse.json();
+          if (emailData.error) {
+            setMessage('認証メールを送信しました');
+            setMessageType('success');
+          } else {
+            setMessage('メールアドレスまたはパスワードが間違っています');
+            setMessageType('error');
           }
-        });
 
-        if (signUpError?.message === 'Invalid login credentials') {
-          toast.error('メールアドレスまたはパスワードが間違っています');
-        } else if (signUpError?.message === 'Email not confirmed') {
-          toast.error('メール認証がまだ完了していません');
+          // Check whether the email is already registered or not 
+          const response = await fetch('/api/auth/email', { 
+            method: 'POST',
+            body: JSON.stringify({ email }),
+          });
+          const data = await response.json();
+          if (data.error) {
+            setMessage('メールアドレスがすでに登録されています');
+            setMessageType('error');
+          }
         } else {
-          setMailLinkSent(true);
+          setMessage('認証メールを送信しました');
+          setMessageType('success');
         }
-
       } else {
+        toast.success('ログインに成功しました');
         onClose(); // Close modal on successful login
-        // GlobalStateManager will automatically detect the auth state change
       }
-
     } catch {
       toast.error('ログインに失敗しました');
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   // Handle social login with Supabase Auth
-  const handleSocialLogin = async (provider: 'google' | 'line') => {
+  const handleSocialLogin = async (provider: 'google') => {
     setIsLoading(true);
     try {
-      const { supabaseClient } = await import('@/lib/supabase/supabaseClient');
       const supabase = supabaseClient;
-      
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: provider === 'line' ? 'google' : provider,
+        provider,
         options: {
           redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
         }
       });
 
       if (error) {
-        toast.error('ソーシャルログインに失敗しました: ' + error.message);
+        toast.error('ソーシャルログインに失敗しました');
       }
       // OAuth will handle the redirect, so we don't close the modal here
-    } catch (error) {
-      console.error('Social login error:', error);
+    } catch {
       toast.error('ソーシャルログインに失敗しました');
     } finally {
       setIsLoading(false);
@@ -206,9 +220,13 @@ export default function LoginModal({
                 <p className='text-[10px] text-gray-500'>※初めて利用する方は、メールアドレスと任意のパスワードを入力</p>
 
                 {/* Mail Link Sent Message */}
-                {mailLinkSent && (
-                  <div className="p-4 mt-4 text-sm text-green-700 bg-green-100 rounded-lg">
-                    <p className="font-medium">登録メールを送信しました</p>
+                {message && (
+                  <div className={`p-3 rounded-lg text-sm ${
+                    messageType === 'success' 
+                      ? 'bg-green-100 text-green-800 border border-green-200' 
+                      : 'bg-red-100 text-red-800 border border-red-200'
+                  }`}>
+                    {message}
                   </div>
                 )}
 
@@ -227,7 +245,6 @@ export default function LoginModal({
                   {/* LINE Login Button */}
                   <button
                     type='button'
-                    onClick={() => handleSocialLogin('line')}
                     disabled={isLoading}
                     className='w-full flex items-center justify-center px-4 py-2 
                              bg-[#00B900] hover:bg-[#00a000] text-white rounded-md 
@@ -238,7 +255,7 @@ export default function LoginModal({
                       fill='currentColor'>
                       <path d='M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.001 12 .001S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314' />
                     </svg>
-                    LINEでログイン
+                    LINEでログイン(準備中)
                   </button>
 
                   {/* Google Login Button */}
@@ -278,4 +295,3 @@ export default function LoginModal({
     </AnimatePresence>
   );
 }
-

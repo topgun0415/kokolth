@@ -14,8 +14,9 @@ const Page: NextPage = () => {
   return (
     <div className='relative'>
       <Shade />
+      {/* HEADER SECTION - Above Shade */}
       <Header />
-      
+
       {/* HERO SECTION - Above Shade */}
       <div className='relative z-20'>
         <HeroSection title='KOKOLTH' subtitle='mail counseling room' />
@@ -46,7 +47,10 @@ const Page: NextPage = () => {
         <MenuSection />
       </div>
 
+      {/* LINE CHAT BUTTON - Below Shade */}
       <LineChatButton />
+
+      {/* FOOTER SECTION - Below Shade */}
       <Footer />
     </div>
   );

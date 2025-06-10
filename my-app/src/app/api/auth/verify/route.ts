@@ -4,7 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase/supabaseAdmin';
 export async function POST(request: NextRequest) {
     try {
       // Request data parsing
-      const { email, authUserId, provider = 'email' } = await request.json();
+      const { email, authUserId, provider } = await request.json();
       
       // Required data validation
       if (!email || !authUserId) {
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       // Check if user already exists
       const { data: existingUser } = await supabaseAdmin
         .from('user')
-        .select('id')
+        .select('id, provider')
         .eq('email', email)
         .single();
   
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
           password: '',
           name: `guest${Math.floor(100000 + Math.random() * 900000)}`,
           is_admin: false,
-          provider,
+          provider: provider,
           created_at: timestamp,
           updated_at: timestamp,
           is_deleted: false

@@ -3,15 +3,14 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabaseClient } from '@/lib/supabase/supabaseClient';
-
 import { toast } from 'react-hot-toast';
 
-export default function AuthCallback() {
+export default function AuthVerify() {
   const router = useRouter();
   const [message, setMessage] = useState('会員登録中...');
   
   useEffect(() => {
-    const handleAuthCallback = async () => {
+    const handleAuthVerify = async () => {
       try {
         const supabase = supabaseClient;
         
@@ -28,16 +27,15 @@ export default function AuthCallback() {
             setMessage('ユーザー情報を保存中...');
 
             // Call API to save/update user information
-            const response = await fetch('/api/auth/callback', {
+            const response = await fetch('/api/auth/verify', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
                 email: user.email,
-                userName: user.user_metadata?.name,
                 authUserId: user.id,
-                provider: 'google'
+                provider: 'mail'
               }),
             });
 
@@ -50,7 +48,6 @@ export default function AuthCallback() {
               setTimeout(() => {
                 router.push('/');
               }, 1500);
-
             }
           }
       } catch {
@@ -59,7 +56,7 @@ export default function AuthCallback() {
       }
     };
     
-    handleAuthCallback();
+    handleAuthVerify();
   }, [router]);
 
   return (

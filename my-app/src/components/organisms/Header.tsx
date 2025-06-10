@@ -9,7 +9,6 @@ export const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,18 +18,6 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleLoginModalOpen = () => {
-    setIsLoginModalOpen(true);
-  };
-
-  const handleLoginSubmit = async () => {
-    try {
-      setIsLoginModalOpen(false);
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
 
   return (
     <>
@@ -49,23 +36,12 @@ export const Header = () => {
             <Navigation setNavBackground={setIsNavOpen} />
           </div>
 
-          {/* Mobile */}
-          <div className='md:hidden'>
-            <ProfileCircle onPress={handleLoginModalOpen} />
-          </div>
-
           {/* Desktop */}
           <div className='hidden md:flex justify-end w-full'>
             <Navigation />
           </div>
         </div>
       </header>
-
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        onSubmit={handleLoginSubmit}
-      />
     </>
   );
 };

@@ -48,9 +48,9 @@ export async function POST(req: Request) {
         await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session);
         break;
       // refund
-      case 'charge.refunded':
-        await handleChargeRefunded(event.data.object as Stripe.Charge);
-        break;
+      // case 'charge.refunded':
+      //   await handleChargeRefunded(event.data.object as Stripe.Charge);
+      //   break;
     }
 
     return NextResponse.json({ received: true }, { status: 200 });
@@ -130,35 +130,22 @@ async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
   console.log(`Failure reason: ${paymentIntent.last_payment_error?.message}`);
   
   try {
-    // INSERT failed payment Info into DB
+    // INSERT failed payment Info into DB 
     const { error } = await supabase
       .from('payments')
       .insert({
-        user_id: userId,
+        user_id: paymentIntent.metadata?.user_id,
         external_id: paymentIntent.id,
         status: 'paid',
         amount: paymentIntent.amount,
         currency: paymentIntent.currency,
         method: paymentIntent.payment_method_types?.[0] || 'unknown',
-        receipt_url: receiptUrl,
-        paid_at: timestamp,
+        receipt_url: null,
+        paid_at: null,
         due_date: null,
-        created_at: timestamp,
-        updated_at: timestamp,
-        is_deleted: false
-
-
-
-        payment_intent_id: paymentIntent.id,
-        amount: paymentIntent.amount, 
-        currency: paymentIntent.currency,
-        status: 'failed',
-        customer_id: paymentIntent.customer as string || null,
-        customer_email: paymentIntent.receipt_email || null,
-        payment_method: paymentIntent.payment_method_types?.[0] || null,
-        error_message: paymentIntent.last_payment_error?.message || null,
         created_at: new Date(paymentIntent.created * 1000).toISOString(),
-        metadata: paymentIntent.metadata || null
+        updated_at: new Date(paymentIntent.created * 1000).toISOString(),
+        is_deleted: false,
       });
 
     if (error) {

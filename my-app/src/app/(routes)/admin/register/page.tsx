@@ -90,8 +90,8 @@ export default function AdminRegisterPage() {
           }
         }
       }
-    } catch(error: any) {
-        setMessage(error.message || "登録に失敗しました");
+    } catch {
+        setMessage("登録に失敗しました");
         setMessageType('error');
     } finally {
       setIsLoading(false);

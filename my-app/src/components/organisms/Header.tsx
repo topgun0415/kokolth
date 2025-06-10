@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navigation } from '../molecules/Navigation';
-import ProfileCircle from '../atoms/ProfileCircle';
-import LoginModal from '../molecules/LoginModal';
 
 export const Header = () => {
 

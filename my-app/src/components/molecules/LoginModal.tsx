@@ -35,6 +35,7 @@ export default function LoginModal({
       });
 
       const data = await response.json();
+      
       if (data.error) {
         if (data.errorType === 'Email not confirmed') {
           setMessage('メール認証がまだ完了していません');

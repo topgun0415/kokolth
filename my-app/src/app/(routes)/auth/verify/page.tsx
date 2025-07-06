@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabaseClient } from '@/lib/supabase/supabaseClient';
+import LoadingBar from '@/components/atoms/LoadingBar';
 import { toast } from 'react-hot-toast';
 
 export default function AuthVerify() {
@@ -44,9 +45,9 @@ export default function AuthVerify() {
             } else {
               toast.success('会員登録が完了しました！');
               
-              // Redirect to main page
+              // Redirect to login page (관리자 승인 대기)
               setTimeout(() => {
-                router.push('/');
+                router.push('/admin/login');
               }, 1500);
             }
           }
@@ -62,13 +63,7 @@ export default function AuthVerify() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
       <div className="w-full max-w-md text-center">
-        <div className="mb-6">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        </div>
-        <p className="text-center text-gray-600 mb-4">{message}</p>
-        <p className="text-sm text-gray-500">
-          しばらくお待ちください...
-        </p>
+        <LoadingBar message={message} subMessage="しばらくお待ちください..." />
       </div>
     </div>
   );

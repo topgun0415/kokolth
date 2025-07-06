@@ -21,22 +21,22 @@ export const Header = () => {
     <>
       <header
         className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-400
+          fixed top-0 left-0 right-0 z-30 transition-all duration-400
           ${
             isScrolled || isNavOpen
               ? 'bg-gray-50 shadow-md py-4'
-              : 'bg-transparent py-4'
+              : 'py-4'
           }
         `}>
-        <div className='container mx-auto px-4 flex justify-between items-center'>
+        <div className='px-4 flex justify-start items-center '>
           {/* Mobile */}
           <div className='md:hidden'>
             <Navigation setNavBackground={setIsNavOpen} />
           </div>
 
           {/* Desktop */}
-          <div className='hidden md:flex justify-end w-full'>
-            <Navigation />
+          <div className='hidden md:flex justify-start w-full'>
+            <Navigation setNavBackground={setIsNavOpen} />
           </div>
         </div>
       </header>

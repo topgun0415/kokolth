@@ -1,13 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import { useAuthStore } from '@/store/useAuthStore';
 
 interface ProfileCircleProps {
   onPress?: () => void;
 }
 
 const ProfileCircle: React.FC<ProfileCircleProps> = ({ onPress }) => {
-  const { isLoggedIn, user } = useAuthStore();
   const handleClick = () => {
     if (onPress) onPress();
   };
@@ -17,11 +15,7 @@ const ProfileCircle: React.FC<ProfileCircleProps> = ({ onPress }) => {
       className='w-10 h-10 rounded-full overflow-hidden cursor-pointer'
       onClick={handleClick}>
       <Image
-        src={
-          isLoggedIn
-            ? user?.image || '/icons/defaultProfile.webp'
-            : '/icons/defaultProfile.webp'
-        }
+        src='/icons/defaultProfile.webp'
         alt='Profile'
         width={40}
         height={40}

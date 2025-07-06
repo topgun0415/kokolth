@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { useAuthStore } from '@/store/useAuthStore';
-import { toast } from 'react-hot-toast';
 
 interface AdditionalContent {
   type: 'heading' | 'list';
@@ -28,7 +26,6 @@ interface Step {
 }
 
 const ProcessCard = () => {
-  const { isLoggedIn } = useAuthStore();
   const [expandedAccordions, setExpandedAccordions] = useState<Record<string, boolean>>({});
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -68,49 +65,29 @@ const ProcessCard = () => {
 
   const steps: Step[] = [
     {
-      title: 'お申し込み',
+      title: 'LINEからお申し込み',
       content:
-        'まずはお問い合わせフォームより<br />お申し込みをお願いいたします。',
-      hasLinkButton: true,
-      linkButtonText: 'お申し込みはこちら',
-      linkButtonUrl: '/payment',
-      accordionItems: [
-        {
-          label: '料金について',
-          detail:
-            '料金は、メール一往復2,000円です。返信メールが届いてから５日以内にご入金ください。',
-        },
-      ],
-      additionalContent: [
-        {
-          type: 'heading',
-          text: 'お支払い方法',
-        },
-        {
-          type: 'list',
-          items: ['クレジットカード', 'PayPay'],
-        },
-      ],
+        '<span class="text-green-600 font-bold">LINE</span>登録後、お名前（ニックネーム、イニシャル可）、年齢、ご希望のプランをお知らせください。あわせて簡単なご相談の内容やご質問もお書き添えいただけますとスムーズです。',
     },
     {
-      title: 'ご相談内容の送信',
+      title: 'ご希望プランの確認と金額のご案内',
       content:
-        'お申し込み後にご案内するメールアドレス宛に、ご相談内容をお送りください。',
+        'ご希望プランを確認後、カウンセリングの料金とお支払い方法（<span class="text-red-600 font-bold">PayPay</span>、<span class="text-red-600 font-bold">クレジットカード</span>）をご案内いたします。PayPayでのお支払いの場合はQRコードを使って簡単にご送金いただけます。'
     },
     {
-      title: 'メールへのお返事',
+      title: 'お支払い完了の確認',
       content:
-        'お悩みの内容を受け止め、ご質問にはお答えし、お悩みには、今後のお気持ちの持ち方や、状況改善に効果的なワークをご紹介する等の内容をお送りいたします。<br />返信は数日以内にお送りさせて頂きます。',
+        'ご入金が確認できましたら<span class="text-green-600 font-bold">LINE</span>にてご連絡いたします。その後正式にカウンセリング開始となります。',
     },
     {
-      title: 'その後のやり取り',
+      title: 'ご相談内容を、メールまたはLINEでお送りください。',
       content:
-        'お気持ちがスッキリされた場合は、そのまま終了されても構いません。さらにご相談されたい場合は、いつでもご返信ください。<br /><br />※<span class="text-red-600 font-bold">２回目以降のやり取りに期限はありません</span>ので、今後もご自由にカウンセリングを活用ください。',
+        '時間帯は問いません。字数制限もありません。ご自分のペースで、思うままに綴っていただければ大丈夫です。<span class="text-green-600 font-bold">LINE</span>の場合、既読がつくまでは何度でも追加や訂正をして頂けます。何から話していいか分からない方は、今感じていることをそのまま教えてくださいね。',
     },
     {
-      title: 'アンケート',
+      title: 'カウンセラーからの返信（1往復完了）',
       content:
-        'よろしければ、お問い合わせフォーム、もしくは<span class="text-green-600 font-bold">LINE</span>でカウンセリングの率直なご感想をお聞かせください。今後の改善に取り入れさせて頂きます！',
+        '<span class="text-red-600 font-bold">48時間</span>以内にご返信いたします。これで1往復のカウンセリングが完了です。'
     },
   ];
 
@@ -156,12 +133,6 @@ const ProcessCard = () => {
                           href={step.linkButtonUrl}
                           onClick={(e) => {
                             e.preventDefault();
-                            
-                            if (isLoggedIn) {
-                              window.location.href = step.linkButtonUrl || '';
-                            } else {
-                              toast.error('ログインが必要です');
-                            }
                           }}
                           className='inline-flex items-center justify-between bg-gray-600 text-white px-4 py-2 text-sm rounded-md mb-4 w-full'>
                           <span>{step.linkButtonText}</span>
@@ -248,6 +219,10 @@ const ProcessCard = () => {
             ))}
           </ol>
         </div>
+        <p className='text-center text-sm sm:text-base mt-10'>ご不明な点がありましたら、</p>
+        <p className='text-center text-sm sm:text-base'>お気軽にご質問ください</p>
+        <p className='text-center text-sm sm:text-base'>不安なお気持ちが少しでも軽くなるよう、</p>
+        <p className='text-center text-sm sm:text-base'>心を込めてお手伝いさせていただきます</p>
       </div>
     </>
   );

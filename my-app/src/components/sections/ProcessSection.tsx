@@ -36,7 +36,7 @@ const ProcessSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className='py-12 bg-gray-100'>
+    <section ref={sectionRef} className='py-10 bg-gray-100'>
       <div className='text-center mb-12'>
         <div
           className={`transform transition-all duration-1000 ease-out ${
@@ -50,7 +50,7 @@ const ProcessSection: React.FC = () => {
             color='primary'
             font='yugothic-medium'
             className='mb-10 text-center'>
-            メールカウンセリングの進め方
+            カウンセリングの流れ
           </Typography>
         </div>
 

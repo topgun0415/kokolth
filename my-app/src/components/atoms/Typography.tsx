@@ -140,3 +140,5 @@ export const Typography: React.FC<TypographyProps> = ({
 
   return <Element />;
 };
+
+export default Typography;

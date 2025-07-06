@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Typography } from '../atoms/Typography';
 import FooterSocialCard from '../molecules/FooterSocialCard';
 
@@ -44,20 +45,25 @@ export const Footer = () => {
                 kokolth@example.co.jp
               </a>
             </Typography>
-            <Typography
-              variant='caption'
-              weight='medium'
-              color='primary'
-              font='yugothic-regular'
-              className='text-[10px]'>
-              営業時間 &nbsp; 平日 8:00-19:30 &nbsp;|&nbsp; 土日祝 10:00-19:00
-            </Typography>
           </div>
 
           {/* right section */}
           <div className='flex flex-col items-center md:items-start justify-between h-full text-center md:text-left'>
             <FooterSocialCard />
-            <div className='mt-2'>
+            <div className='mt-2 flex flex-col items-center md:items-start space-y-1'>
+              <div className='flex space-x-1 text-[10px]'>
+                <Link
+                  href='/terms'
+                  className='text-gray-600 hover:underline font-yugothic-regular'>
+                  利用規約
+                </Link>
+                <span className='text-gray-600 font-yugothic-regular'>|</span>
+                <Link
+                  href='/faq'
+                  className='text-gray-600 hover:underline font-yugothic-regular'>
+                  よくある質問
+                </Link>
+              </div>
               <Typography
                 variant='caption'
                 weight='light'

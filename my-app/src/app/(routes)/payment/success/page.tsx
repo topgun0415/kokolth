@@ -96,7 +96,7 @@ const SuccessPageContent: React.FC = () => {
             href="/"
             className="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors"
           >
-            ホームに戻る
+            KOKOLTHに戻る
           </Link>
         </div>
       </div>

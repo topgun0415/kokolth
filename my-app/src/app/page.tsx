@@ -7,6 +7,9 @@ import ServiceSection from '../components/sections/ServiceSection';
 import ProcessSection from '../components/sections/ProcessSection';
 import MenuSection from '../components/sections/MenuSection';
 import AboutSection from '../components/sections/AboutSection';
+import PriceSection from '../components/sections/PriceSection';
+import PaymentSection from '../components/sections/PaymentSection';
+import PostSection from '../components/sections/PostSection';
 import Shade from '../components/organisms/Shade';
 import LineChatButton from '../components/atoms/LineChatButton';
 
@@ -18,32 +21,47 @@ const Page: NextPage = () => {
       <Header />
 
       {/* HERO SECTION - Above Shade */}
-      <div className='relative z-20'>
+      <div className='relative'>
         <HeroSection title='KOKOLTH' subtitle='mail counseling room' />
       </div>
 
       {/* CONCEPT SECTION - Below Shade */}
-      <div id='concept' className='relative z-0'>
+      <div id='concept' className='relative'>
         <ConceptSection />
       </div>
 
+      {/* POST SECTION - Above Shade */}
+      <div id='news' className='relative'>
+        <PostSection />
+      </div>
+
       {/* OUR SERVICE SECTION - Above Shade */}
-      <div id='service' className='relative z-20'>
+      <div id='service' className='relative'>
         <ServiceSection />
       </div>
 
       {/* ABOUT SECTION - Above Shade */}
-      <div id='about' className='relative z-0'>
+      <div id='about' className='relative'>
         <AboutSection />
       </div>
 
+      {/* PRICE SECTION - Above Shade */}
+      <div id='price' className='relative'>
+        <PriceSection />
+      </div>
+
+      {/* PAYMENT SECTION - Above Shade */}
+      <div id='payment' className='relative'>
+        <PaymentSection />
+      </div>
+
       {/* PROCESS SECTION - Above Shade */}
-      <div id='process' className='relative z-20'>
+      <div id='process' className='relative'>
         <ProcessSection />
       </div>
 
       {/* MENU SECTION - Above Shade */}
-      <div id='menu' className='relative z-20'>
+      <div id='menu' className='relative'>
         <MenuSection />
       </div>
 

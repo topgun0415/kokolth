@@ -1,8 +1,7 @@
 import React from 'react';
 import InstagramCircleButton from '../atoms/InstagramCircleButton';
-import FacebookCircleButton from '../atoms/FacebookCircleButton';
-import TwitterCircleButton from '../atoms/TwitterCircleButton';
-import YouTubeCircleButton from '../atoms/YoutubeCircleButton';
+import LineCircleButton from '../atoms/LineCircleButton';
+import ThreadsCircleButton from '../atoms/ThreadsCircleButton';
 
 interface FooterSocialCardProps {
   children?: never;
@@ -12,10 +11,9 @@ const FooterSocialCard: React.FC<FooterSocialCardProps> = ({}) => {
   return (
     <>
       <div className='flex justify-between items-center gap-5 text-sm mt-4'>
-        <InstagramCircleButton href='https://www.instagram.com' />
-        <FacebookCircleButton href='https://www.facebook.com' />
-        <TwitterCircleButton href='https://x.com/' />
-        <YouTubeCircleButton href='https://www.youtue.com' />
+        <LineCircleButton href='https://page.line.me/497jkrfq' />
+        <InstagramCircleButton href='https://www.instagram.com/hisako3kidssweets' />
+        <ThreadsCircleButton href='https://www.threads.net/hisako3kidssweets' />
       </div>
     </>
   );

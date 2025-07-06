@@ -35,7 +35,36 @@ export async function POST(request: NextRequest) {
             }, { status: statusCode });
         }
 
-        return NextResponse.json({ message: 'ログインに成功しました', user: data.user }, { status: 200 });
+        // user information
+        const { data: userData } = await supabase
+          .from('user')
+          .select('id, name, email, is_admin')
+          .eq('email', data.user.email)
+          .single();
+
+        // session cookie
+        const response = NextResponse.json({ 
+          message: 'ログインに成功しました', 
+          user: userData || { id: '', name: '', email: data.user.email, is_admin: false }
+        }, { status: 200 });
+        
+        if (data.session) {
+          // Access token and refresh token to cookie
+          response.cookies.set('supabase-access-token', data.session.access_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: data.session.expires_in
+          });
+          
+          response.cookies.set('supabase-refresh-token', data.session.refresh_token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 7 // 7 days
+          });
+        }
+        return response;
     } catch {
         return NextResponse.json({ error: 'ログインに失敗しました' }, { status: 500 });
     }

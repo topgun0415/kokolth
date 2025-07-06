@@ -4,9 +4,7 @@ import { persist } from 'zustand/middleware';
 type User = {
   id: string;
   name: string;
-  image: string;
   email?: string;
-  status: 'active' | 'inactive';
   is_admin: boolean;
 }
 
@@ -20,12 +18,18 @@ type AuthState = {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      user: { id: '', name: '', image: '', status: 'active', is_admin: false },
+      user: { id: '', name: '', email: '', is_admin: false },
       isLoggedIn: false,
+
+      // login
       setLogin: (user: User) => 
         set({ user, isLoggedIn: true }),
-      setLogout: () => 
-        set({ user: { id:'', name: '', image: '', status: 'inactive', is_admin: false }, isLoggedIn: false }),
+
+      // logout
+      setLogout: () => set({ 
+        user: { id: '', name: '', email: '', is_admin: false }, 
+        isLoggedIn: false 
+      }),
     }),
     {
       name: 'auth-storage',

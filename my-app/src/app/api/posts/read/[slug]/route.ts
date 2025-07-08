@@ -30,7 +30,6 @@ export async function GET(
       if (fetchError.code === 'PGRST116') {
         return NextResponse.json({ error: 'お知らせが見つかりません' }, { status: 404 });
       }
-      console.error('Fetch error:', fetchError);
       return NextResponse.json(
         { error: 'お知らせの取得に失敗しました', details: fetchError.message }, 
         { status: 500 }
@@ -52,8 +51,7 @@ export async function GET(
       }
     });
 
-  } catch (error) {
-    console.error('Server error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'サーバーエラーが発生しました' }, 
       { status: 500 }

@@ -199,11 +199,9 @@ export default function PostSection() {
         if (response.ok) {
           setPosts(data.posts);
         } else {
-          console.error("Failed to fetch posts:", data.error);
           setError(data.error || "ポストの読み込みに失敗しました");
         }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
+      } catch {
         setError("ポストの読み込みに失敗しました");
       } finally {
         setLoading(false);
@@ -246,12 +244,10 @@ export default function PostSection() {
       if (response.ok) {
         setSelectedPost(data.post);
       } else {
-        console.error("Failed to fetch post details:", data.error);
         setError(data.error || "ポストの詳細読み込みに失敗しました");
         // Keep modal open but show error
       }
-    } catch (error) {
-      console.error("Error fetching post details:", error);
+    } catch {
       setError("ポストの詳細読み込みに失敗しました");
       // Keep modal open but show error
     } finally {

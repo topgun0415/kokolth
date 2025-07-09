@@ -2,22 +2,18 @@
 
 ### Project Information
 
-Domain : 未定　<br>
-Release version 0.0.0 <br>
-Release date : 2025/05/31
+Domain : <a href="https://www.kokolth.com">www.kokolth.com</a>　<br>
+Release version 0.1v <br>
+Release date : 2025/07/12
 
 ### Link ✨
-
-MVP : <a href="https://kokolth-topgun0415s-projects.vercel.app/">MVP</a>
-<br>
-MAIN : NOT RELEASED YET 🚧
+Prod : <a href="https://kokolth-topgun0415s-projects.vercel.app/">ココロス</a>
 
 ### Customer's needs 💬
-
-1. SOCIAL ログイン & シンプルな CMS 画面
-2. LINE 通知機能
-3. チャット機能
-4. 支払い機能
+- 管理者画面
+- LINE 通知機能　（未定）
+- チャット機能　（未定）
+- 支払い機能　（未定）
 
 ---
 
@@ -32,13 +28,7 @@ MAIN : NOT RELEASED YET 🚧
 [![DB](https://skillicons.dev/icons?i=postgresql)]()
 
 ### CI/CD
-
 [![Docker](https://skillicons.dev/icons?i=docker)]()
 [![Vercel](https://skillicons.dev/icons?i=vercel)]()
 
 ---
-
-### Project Scedule
-
-2025/03/15 ~ 2025/03/16 : MVP <br />
-2025/03/16 ~ 2025/04/30 : 1st Release

@@ -220,7 +220,7 @@ const ProcessCard = () => {
           </ol>
         </div>
         <p className='text-center text-sm sm:text-base mt-10'>ご不明な点がありましたら、</p>
-        <p className='text-center text-sm sm:text-base'>お気軽にご質問ください</p>
+        <p className='text-center text-sm sm:text-base'>LINEからお気軽にご質問ください</p>
         <p className='text-center text-sm sm:text-base'>不安なお気持ちが少しでも軽くなるよう、</p>
         <p className='text-center text-sm sm:text-base'>心を込めてお手伝いさせていただきます</p>
       </div>

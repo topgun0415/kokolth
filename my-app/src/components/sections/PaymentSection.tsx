@@ -220,7 +220,7 @@ const PaymentSection: React.FC = () => {
                 className='text-sm font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed'>
                 お支払い方法についてご不明な点が
                 <br />
-                ございましたら、どうぞお気軽に
+                ございましたら、どうぞお気軽にLINEから
                 <br />
                 お問い合わせくださいませ
               </Typography>

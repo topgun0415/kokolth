@@ -18,7 +18,7 @@ export const Footer = () => {
               className='md:mt-10 lg:mt-2'>
               KOKOLTH
             </Typography>
-            <Typography
+            {/* <Typography
               variant='caption'
               weight='medium'
               color='primary'
@@ -44,7 +44,7 @@ export const Footer = () => {
                 rel='noopener noreferrer'>
                 kokolth@example.co.jp
               </a>
-            </Typography>
+            </Typography> */}
           </div>
 
           {/* right section */}

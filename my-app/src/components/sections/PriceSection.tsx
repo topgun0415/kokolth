@@ -166,7 +166,7 @@ const PriceSection: React.FC = () => {
                 className='text-sm font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed'>
                 カウンセリング内容やご不安な点など、
                 <br />
-                どうぞお気軽にご相談くださいませ
+                どうぞお気軽にLINEからご相談くださいませ
               </Typography>
             </div>
           </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { Typography } from '@/components/atoms/Typography';
 
 interface AdditionalContent {
   type: 'heading' | 'list';
@@ -72,7 +73,7 @@ const ProcessCard = () => {
     {
       title: 'ご希望プランの確認と決済',
       content:
-        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム左下「＋」から簡単に決済して頂けます。'
+        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム<br />左下「＋」から簡単に決済して頂けます。'
     },
     {
       title: 'ご相談内容をLINEもしくはメールにてお送りください',
@@ -214,23 +215,53 @@ const ProcessCard = () => {
             ))}
           </ol>
         </div>
-        <p className='text-center text-sm sm:text-base mt-10 font-bold'>ご相談内容についてのお願い</p>
-        <br />
-        <p className='text-center text-sm sm:text-base'>ご相談内容は一度で書き切れなくても大丈夫です。</p>
-        <p className='text-center text-sm sm:text-base'>何日かかけてゆっくりと、自分のペースで整理</p>
-        <p className='text-center text-sm sm:text-base'>しながら綴っていただいても大丈夫です。</p>
-        <br />
-        <p className='text-center text-sm sm:text-base'>途中で送ってしまったり、「やっぱりここ直したい」と</p>
-        <p className='text-center text-sm sm:text-base'>思われた場合もご安心ください。最後に「ここまで</p>
-        <p className='text-center text-sm sm:text-base'>でお願いします」や「以上で送信完了です」など、</p>
-        <p className='text-center text-sm sm:text-base'>一言そえていただけた時点で、返信の準備を</p>
-        <p className='text-center text-sm sm:text-base'>させていただきます。</p>
-        <br />
-        <p className='text-center text-sm sm:text-base'>何から話していいか分からない方は、今感じている</p>
-        <p className='text-center text-sm sm:text-base'>ことをそのまま教えてくださいね。書くという</p>
-        <p className='text-center text-sm sm:text-base'>行為自体が、心の整理を助けてくれることがあります。</p>
-        <p className='text-center text-sm sm:text-base'>カウンセリングは、すでにその時間から始まっています。</p>
-        <p className='text-center text-sm sm:text-base'>あなたの言葉を、ゆっくりお待ちしております。</p>
+        <div className="mt-10 text-center space-y-2">
+          <Typography
+            variant="body"
+            weight="bold"
+            color="primary"
+            className="text-lg sm:text-xl font-bold mt-10"
+          >
+            ご相談内容についてのお願い
+          </Typography>
+          <Typography
+            variant="body"
+            weight="regular"
+            color="primary"
+            className="text-sm sm:text-base text-center mt-4"
+          >
+            ご相談内容は一度で書き切れなくても大丈夫です。<br />
+            何日かかけてゆっくりと、自分のペースで整理<br />
+            しながら綴っていただいても大丈夫です。
+          </Typography>
+          <Typography
+            variant="body"
+            weight="regular"
+            color="primary"
+            className="text-sm sm:text-base text-center mt-4"
+          >
+            途中で送ってしまったり、「やっぱりここ直したい」<br />と思われた場合もご安心ください。<br />
+            最後に「ここまででお願いします」や<br />「以上で送信完了です」など、<br />一言そえていただけた時点で、返信の準備を<br />させていただきます。
+          </Typography>
+          <Typography
+            variant="body"
+            weight="regular"
+            color="primary"
+            className="text-sm sm:text-base text-center mt-4"
+          >
+            何から話していいか分からない方は、今感じている<br />ことをそのまま教えてくださいね。
+          </Typography>
+          <Typography
+            variant="body"
+            weight="regular"
+            color="primary"
+            className="text-sm sm:text-base text-center mt-4"
+          >
+            書くという行為自体が、心の整理を助けてくれる<br />ことがあります。
+            カウンセリングは、すでにその時間<br />から始まっています。
+            あなたの言葉を、ゆっくり<br />お待ちしております。
+          </Typography>
+        </div>
       </div>
     </>
   );

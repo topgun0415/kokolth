@@ -63,6 +63,12 @@ export const Footer = () => {
                   className='text-gray-600 hover:underline font-yugothic-regular'>
                   よくある質問
                 </Link>
+                <span className='text-gray-600 font-yugothic-regular'>|</span>
+                <Link
+                  href='/legal'
+                  className='text-gray-600 hover:underline font-yugothic-regular'>
+                  特定商取引法に基づく表記
+                </Link>
               </div>
               <Typography
                 variant='caption'

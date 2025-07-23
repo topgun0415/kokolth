@@ -19,10 +19,10 @@ export const Navigation: React.FC<NavigationProps> = ({
       { label: "ニュース", href: "#news" },
       { label: "メールカウンセリングとは", href: "#service" },
       { label: "カウンセラーよりご挨拶", href: "#about" },
-      { label: "お支払い方法", href: "#payment" },
-      { label: "料金について", href: "#price" },
       { label: "カウンセリングの進め方", href: "#process" },
       { label: "こんなお悩みの方へ", href: "#menu" },
+      { label: "料金について", href: "#price" },
+      { label: "お支払い方法", href: "#payment" },
     ],
     []
   );
@@ -173,7 +173,7 @@ export const Navigation: React.FC<NavigationProps> = ({
           </button>
 
           <div
-            className={`fixed top-15.5 left-0 w-screen h-screen p-4 z-20 transition-all duration-300 ${
+            className={`fixed top-15 left-0 w-screen h-screen p-4 z-20 transition-all duration-300 ${
               isMobileMenuOpen
                 ? "bg-white"
                 : "bg-transparent shadow-none pointer-events-none -translate-x-full"
@@ -204,7 +204,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 </div>
                 
                 {/* Footer section - positioned at bottom */}
-                <div className="flex flex-col space-y-2 mt-auto mb-8">
+                <div className="flex flex-col space-y-2 mt-auto mb-16">
                   <div className="flex space-x-1 text-[10px]">
                     <Link
                       href="/terms"
@@ -220,6 +220,15 @@ export const Navigation: React.FC<NavigationProps> = ({
                       className="text-gray-600 hover:underline font-yugothic-regular"
                     >
                       よくある質問
+                    </Link>
+                    <span className="text-gray-600 font-yugothic-regular">
+                      |
+                    </span>
+                    <Link
+                      href="/legal"
+                      className="text-gray-600 hover:underline font-yugothic-regular"
+                    >
+                      特定商取引法に基づく表記
                     </Link>
                   </div>
                   

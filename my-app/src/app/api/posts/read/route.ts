@@ -3,8 +3,6 @@ import { supabaseAdmin } from '@/lib/supabase/supabaseAdmin';
 
 export async function GET(request: NextRequest) {
   try {
-    // Public API - no authentication required for reading posts
-
     // Get URL parameters for pagination and filtering
     const url = new URL(request.url);
     const page = parseInt(url.searchParams.get('page') || '1');
@@ -33,18 +31,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Apply pagination
-    console.log('Applying pagination:', { offset, limit });
     query = query.range(offset, offset + limit - 1);
-
-    console.log('Executing query...');
     const { data: posts, error: fetchError, count } = await query;
-    
-    console.log('Query result:', { posts, fetchError, count });
-
     if (fetchError) {
-      console.error('Fetch error:', fetchError);
       return NextResponse.json(
-        { error: '記事の取得に失敗しました', details: fetchError.message }, 
+        { error: 'まだニュースがありません', details: fetchError.message }, 
         { status: 500 }
       );
     }
@@ -64,8 +55,7 @@ export async function GET(request: NextRequest) {
       }
     });
 
-  } catch (error) {
-    console.error('Server error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'サーバーエラーが発生しました' }, 
       { status: 500 }

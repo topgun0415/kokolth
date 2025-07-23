@@ -18,7 +18,7 @@ export const Footer = () => {
               className='md:mt-10 lg:mt-2'>
               KOKOLTH
             </Typography>
-            <Typography
+            {/* <Typography
               variant='caption'
               weight='medium'
               color='primary'
@@ -44,7 +44,7 @@ export const Footer = () => {
                 rel='noopener noreferrer'>
                 kokolth@example.co.jp
               </a>
-            </Typography>
+            </Typography> */}
           </div>
 
           {/* right section */}
@@ -62,6 +62,12 @@ export const Footer = () => {
                   href='/faq'
                   className='text-gray-600 hover:underline font-yugothic-regular'>
                   よくある質問
+                </Link>
+                <span className='text-gray-600 font-yugothic-regular'>|</span>
+                <Link
+                  href='/legal'
+                  className='text-gray-600 hover:underline font-yugothic-regular'>
+                  特定商取引法に基づく表記
                 </Link>
               </div>
               <Typography

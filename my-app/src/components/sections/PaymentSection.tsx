@@ -58,7 +58,7 @@ const PaymentSection: React.FC = () => {
       id: 'credit-card',
       title: 'クレジットカード決済はこちら',
       icon: (
-        <div className="flex items-center justify-center flex-wrap gap-2 mb-4">
+        <div className="flex items-center justify-center flex-wrap gap-2 lg:mt-7">
           <Image
             src="/images/visaCard.png"
             alt="VISA"
@@ -161,7 +161,7 @@ const PaymentSection: React.FC = () => {
                           variant='body'
                           weight='bold'
                           color='primary'
-                          className='text-lg sm:text-xl font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed mb-2 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer underline'>
+                          className='text-lg sm:text-xl font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed mb-2 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer underline lg:mt-12'>
                           {method.title}
                         </Typography>
                       </Link>
@@ -220,7 +220,7 @@ const PaymentSection: React.FC = () => {
                 className='text-sm font-["M_PLUS_1p",sans-serif] tracking-wide leading-relaxed'>
                 お支払い方法についてご不明な点が
                 <br />
-                ございましたら、どうぞお気軽に
+                ございましたら、どうぞお気軽にLINEより
                 <br />
                 お問い合わせくださいませ
               </Typography>

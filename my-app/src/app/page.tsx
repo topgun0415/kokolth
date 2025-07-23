@@ -45,16 +45,6 @@ const Page: NextPage = () => {
         <AboutSection />
       </div>
 
-      {/* PRICE SECTION - Above Shade */}
-      <div id='price' className='relative'>
-        <PriceSection />
-      </div>
-
-      {/* PAYMENT SECTION - Above Shade */}
-      <div id='payment' className='relative'>
-        <PaymentSection />
-      </div>
-
       {/* PROCESS SECTION - Above Shade */}
       <div id='process' className='relative'>
         <ProcessSection />
@@ -63,6 +53,16 @@ const Page: NextPage = () => {
       {/* MENU SECTION - Above Shade */}
       <div id='menu' className='relative'>
         <MenuSection />
+      </div>
+
+      {/* PRICE SECTION - Above Shade */}
+      <div id='price' className='relative'>
+        <PriceSection />
+      </div>
+
+      {/* PAYMENT SECTION - Above Shade */}
+      <div id='payment' className='relative'>
+        <PaymentSection />
       </div>
 
       {/* LINE CHAT BUTTON - Below Shade */}

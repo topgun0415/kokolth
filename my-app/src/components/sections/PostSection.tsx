@@ -199,12 +199,10 @@ export default function PostSection() {
         if (response.ok) {
           setPosts(data.posts);
         } else {
-          console.error("Failed to fetch posts:", data.error);
-          setError(data.error || "ポストの読み込みに失敗しました");
+          setError(data.error || "ニュースの読み込みに失敗しました");
         }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-        setError("ポストの読み込みに失敗しました");
+      } catch {
+        setError("ニュースの読み込みに失敗しました");
       } finally {
         setLoading(false);
       }
@@ -246,13 +244,11 @@ export default function PostSection() {
       if (response.ok) {
         setSelectedPost(data.post);
       } else {
-        console.error("Failed to fetch post details:", data.error);
-        setError(data.error || "ポストの詳細読み込みに失敗しました");
+        setError(data.error || "ニュースの詳細読み込みに失敗しました");
         // Keep modal open but show error
       }
-    } catch (error) {
-      console.error("Error fetching post details:", error);
-      setError("ポストの詳細読み込みに失敗しました");
+    } catch {
+      setError("ニュースの詳細読み込みに失敗しました");
       // Keep modal open but show error
     } finally {
       setModalLoading(false);
@@ -310,7 +306,7 @@ export default function PostSection() {
                 font="yugothic-medium"
                 className="mt-4 text-center"
               >
-                ニュース
+                News
               </Typography>
             </div>
           </div>
@@ -338,7 +334,7 @@ export default function PostSection() {
               font="yugothic-medium"
               className="mt-4 text-center"
             >
-              ニュース
+              News
             </Typography>
           </div>
         </div>

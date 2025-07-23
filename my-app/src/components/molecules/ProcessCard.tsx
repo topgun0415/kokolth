@@ -73,7 +73,7 @@ const ProcessCard = () => {
     {
       title: 'ご希望プランの確認と決済',
       content:
-        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム<br />左下「＋」から簡単に決済して頂けます。'
+        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム左下「＋」から簡単に決済して頂けます。'
     },
     {
       title: 'ご相談内容をLINEもしくはメールにてお送りください',

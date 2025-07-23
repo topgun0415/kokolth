@@ -67,27 +67,22 @@ const ProcessCard = () => {
     {
       title: 'LINEからお申し込み',
       content:
-        '<span class="text-green-600 font-bold">LINE</span>登録後、お名前（ニックネーム、イニシャル可）、年齢、ご希望のプランをお知らせください。あわせて簡単なご相談の内容やご質問もお書き添えいただけますとスムーズです。',
+        'まずは友達登録をお願い致します。ご相談のお申し込み、ご質問やお問い合わせもこちらからお気軽にどうぞ！ご質問やお問い合わせは無料です。決済後でも無料でご質問頂けます。',
     },
     {
-      title: 'ご希望プランの確認と金額のご案内',
+      title: 'ご希望プランの確認と決済',
       content:
-        'ご希望プランを確認後、カウンセリングの料金とお支払い方法（<span class="text-red-600 font-bold">PayPay</span>、<span class="text-red-600 font-bold">クレジットカード</span>）をご案内いたします。PayPayでのお支払いの場合はQRコードを使って簡単にご送金いただけます。'
+        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム左下「＋」から簡単に決済して頂けます。'
     },
     {
-      title: 'お支払い完了の確認',
+      title: 'ご相談内容をLINEもしくはメールにてお送りください',
       content:
-        'ご入金が確認できましたら<span class="text-green-600 font-bold">LINE</span>にてご連絡いたします。その後正式にカウンセリング開始となります。',
+        '<span class="text-green-600 font-bold">LINE</span>のトーク画面でそのまま書いて頂くか、メールご希望の方にはアドレスもご案内いたします。時間帯は問いません。字数制限もありません。ご自分のペースで、思うままに綴っていただければ大丈夫です。',
     },
     {
-      title: 'ご相談内容を、メールまたはLINEでお送りください。',
+      title: 'カウンセラーからの返信',
       content:
-        '時間帯は問いません。字数制限もありません。ご自分のペースで、思うままに綴っていただければ大丈夫です。<span class="text-green-600 font-bold">LINE</span>の場合、既読がつくまでは何度でも追加や訂正をして頂けます。何から話していいか分からない方は、今感じていることをそのまま教えてくださいね。',
-    },
-    {
-      title: 'カウンセラーからの返信（1往復完了）',
-      content:
-        '<span class="text-red-600 font-bold">48時間</span>以内にご返信いたします。これで1往復のカウンセリングが完了です。'
+        'ご相談文を受け取りましたら、24時間以内にご返信いたします。これで1往復のカウンセリングが完了です。',
     },
   ];
 
@@ -219,10 +214,23 @@ const ProcessCard = () => {
             ))}
           </ol>
         </div>
-        <p className='text-center text-sm sm:text-base mt-10'>ご不明な点がありましたら、</p>
-        <p className='text-center text-sm sm:text-base'>LINEよりお気軽にご質問ください</p>
-        <p className='text-center text-sm sm:text-base'>不安なお気持ちが少しでも軽くなるよう、</p>
-        <p className='text-center text-sm sm:text-base'>心を込めてお手伝いさせていただきます</p>
+        <p className='text-center text-sm sm:text-base mt-10 font-bold'>ご相談内容についてのお願い</p>
+        <br />
+        <p className='text-center text-sm sm:text-base'>ご相談内容は一度で書き切れなくても大丈夫です。</p>
+        <p className='text-center text-sm sm:text-base'>何日かかけてゆっくりと、自分のペースで整理</p>
+        <p className='text-center text-sm sm:text-base'>しながら綴っていただいても大丈夫です。</p>
+        <br />
+        <p className='text-center text-sm sm:text-base'>途中で送ってしまったり、「やっぱりここ直したい」と</p>
+        <p className='text-center text-sm sm:text-base'>思われた場合もご安心ください。最後に「ここまで</p>
+        <p className='text-center text-sm sm:text-base'>でお願いします」や「以上で送信完了です」など、</p>
+        <p className='text-center text-sm sm:text-base'>一言そえていただけた時点で、返信の準備を</p>
+        <p className='text-center text-sm sm:text-base'>させていただきます。</p>
+        <br />
+        <p className='text-center text-sm sm:text-base'>何から話していいか分からない方は、今感じている</p>
+        <p className='text-center text-sm sm:text-base'>ことをそのまま教えてくださいね。書くという</p>
+        <p className='text-center text-sm sm:text-base'>行為自体が、心の整理を助けてくれることがあります。</p>
+        <p className='text-center text-sm sm:text-base'>カウンセリングは、すでにその時間から始まっています。</p>
+        <p className='text-center text-sm sm:text-base'>あなたの言葉を、ゆっくりお待ちしております。</p>
       </div>
     </>
   );

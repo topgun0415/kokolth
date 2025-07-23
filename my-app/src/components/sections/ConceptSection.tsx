@@ -36,7 +36,7 @@ const ConceptSection: React.FC = () => {
   const conceptLinesDesktop = [
     '高齢出産、妊活中、妊娠中、高齢育児、夫婦関係について',
     '不安やつらい気持ちを抱えている全ての方に',
-    '４８歳での出産を経験した管理栄養士でもある心理カウンセラーが',
+    '48歳での出産を経験した管理栄養士でもある心理カウンセラーが',
     'メールカウンセリングでご支援いたします'
   ];
 
@@ -45,7 +45,7 @@ const ConceptSection: React.FC = () => {
     '高齢出産、妊活中、妊娠中',
     '高齢育児、夫婦関係について',
     '不安やつらい気持ちを抱えている',
-    '全ての方に ４８歳での出産を経験した',
+    '全ての方に 48歳での出産を経験した',
     '管理栄養士でもある心理カウンセラーが',
     'メールカウンセリングで',
     'ご支援いたします'
@@ -64,14 +64,6 @@ const ConceptSection: React.FC = () => {
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
             }`}>
-            <Typography
-              variant='h3'
-              weight='medium'
-              color='primary'
-              font='yugothic-medium'
-              className='mb-6 text-center'>
-              コンセプト
-            </Typography>
           </div>
         </div>
 

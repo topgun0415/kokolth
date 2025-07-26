@@ -9,6 +9,12 @@ const PaymentSection: React.FC = () => {
   const [contentVisible, setContentVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  const stripeLinks = {
+    trial: process.env.NEXT_PUBLIC_STRIPE_LINK_TRIAL,
+    standard: process.env.NEXT_PUBLIC_STRIPE_LINK_STANDARD,
+    premium: process.env.NEXT_PUBLIC_STRIPE_LINK_PREMIUM,
+  };
+
   useEffect(() => {
     const sectionElement = sectionRef.current;
     if (!sectionElement) return;
@@ -157,7 +163,7 @@ const PaymentSection: React.FC = () => {
                         <div className='mt-6 lg:mt-8 xl:mt-10 2xl:mt-12 pt-4 lg:pt-6 xl:pt-8 2xl:pt-10 border-t border-gray-200 space-y-3 lg:space-y-4 xl:space-y-5 2xl:space-y-6'>
                           {/* 初回お試しプラン */}
                           <a
-                            href="https://buy.stripe.com/test_aFa7sL4JT74I12xeAH4AU02"
+                            href={stripeLinks.trial}
                             target="_blank"
                             rel="noopener noreferrer"
                             className='inline-block w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-medium py-3 lg:py-4 xl:py-6 2xl:py-8 px-6 lg:px-8 xl:px-10 2xl:px-12 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md'>
@@ -193,7 +199,7 @@ const PaymentSection: React.FC = () => {
                           
                           {/* 通常プラン */}
                           <a
-                            href="https://buy.stripe.com/test_14AcN54JT1KobHb2RZ4AU01"
+                            href={stripeLinks.standard}
                             target="_blank"
                             rel="noopener noreferrer"
                             className='inline-block w-full bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 text-white font-medium py-3 lg:py-4 xl:py-6 2xl:py-8 px-6 lg:px-8 xl:px-10 2xl:px-12 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md'>
@@ -222,7 +228,7 @@ const PaymentSection: React.FC = () => {
                           
                           {/* 継続サポート3回パック */}
                           <a
-                            href="https://buy.stripe.com/test_7sY00j6S13SwfXr5074AU00"
+                            href={stripeLinks.premium}
                             target="_blank"
                             rel="noopener noreferrer"
                             className='inline-block w-full bg-gradient-to-r from-slate-700 to-slate-700 hover:from-slate-600 hover:to-slate-700 text-white font-medium py-3 lg:py-4 xl:py-6 2xl:py-8 px-6 lg:px-8 xl:px-10 2xl:px-12 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md'>

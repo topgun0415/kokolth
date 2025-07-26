@@ -39,9 +39,12 @@ const PaymentSection: React.FC = () => {
   const paymentMethods = [
     {
       id: 'paypay',
-      title: 'PayPayでの送金',
       subtitle: '',
-      description: 'ご希望の方は、LINE公式アカウントを友だち追加後、PayPay送金のQRコードをご案内いたします',
+      description: [
+        '方法は友達追加後、LINEのトーク画面より',
+        <br key="br1" />,
+        'ご案内いたします。'
+      ],
       icon: (
         <div className="flex items-center justify-center">
           <Image

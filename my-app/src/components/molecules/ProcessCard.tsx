@@ -68,17 +68,17 @@ const ProcessCard = () => {
     {
       title: 'LINEからお申し込み',
       content:
-        'まずは友達登録をお願い致します。ご相談のお申し込み、ご質問やお問い合わせもこちらからお気軽にどうぞ！ご質問やお問い合わせは無料です。決済後でも無料でご質問頂けます。',
+        'まずは友達登録をお願い致します。ご質問やお問い合わせもこちらからお気軽にどうぞ！ご質問やお問い合わせは無料です。決済後でも無料でご質問頂けます。',
     },
     {
       title: 'ご希望プランの確認と決済',
       content:
-        'クレジットカードご希望の方はホームページの決済画面から<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム左下「＋」から簡単に決済して頂けます。'
+        'クレジットカードご希望の方はホームページの決済画面から、<span class="text-red-600 font-bold">PayPay</span>ご希望の方は<span class="text-green-600 font-bold">LINE</span>のトークルーム左下「＋」から簡単に決済して頂けます。'
     },
     {
       title: 'ご相談内容をLINEもしくはメールにてお送りください',
       content:
-        '<span class="text-green-600 font-bold">LINE</span>のトーク画面でそのまま書いて頂くか、メールご希望の方にはアドレスもご案内いたします。時間帯は問いません。字数制限もありません。ご自分のペースで、思うままに綴っていただければ大丈夫です。',
+        '決済が完了されましたら、ご相談内容を<span class="text-green-600 font-bold">LINE</span>のトーク画面でそのまま書いて頂くか、メールご希望の方にはアドレスもご案内いたします。時間帯は問いません。字数制限もありません。ご自分のペースで、思うままに綴っていただければ大丈夫です。',
     },
     {
       title: 'カウンセラーからの返信',
@@ -231,7 +231,7 @@ const ProcessCard = () => {
             className="text-sm sm:text-base text-center mt-4"
           >
             ご相談内容は一度で書き切れなくても大丈夫です。<br />
-            何日かかけてゆっくりと、自分のペースで整理<br />
+            何日かかけてゆっくりと自分のペースで整理<br />
             しながら綴っていただいても大丈夫です。
           </Typography>
           <Typography
@@ -240,8 +240,8 @@ const ProcessCard = () => {
             color="primary"
             className="text-sm sm:text-base text-center mt-4"
           >
-            途中で送ってしまったり、「やっぱりここ直したい」<br />と思われた場合もご安心ください。<br />
-            最後に「ここまででお願いします」や<br />「以上で送信完了です」など、<br />一言そえていただけた時点で、返信の準備を<br />させていただきます。
+            途中で送ってしまったり「やっぱりここ直したい」<br />と思われた場合もご安心ください。<br />
+            最後に「ここまででお願いします」や<br />「以上で送信完了です」など<br />一言そえていただけた時点で返信の準備を<br />いたします。
           </Typography>
           <Typography
             variant="body"
@@ -249,7 +249,7 @@ const ProcessCard = () => {
             color="primary"
             className="text-sm sm:text-base text-center mt-4"
           >
-            何から話していいか分からない方は、今感じている<br />ことをそのまま教えてくださいね。
+            何から話していいか分からない方は今感じている<br />ことをそのまま教えてくださいね。
           </Typography>
           <Typography
             variant="body"
@@ -257,9 +257,9 @@ const ProcessCard = () => {
             color="primary"
             className="text-sm sm:text-base text-center mt-4"
           >
-            書くという行為自体が、心の整理を助けてくれる<br />ことがあります。
-            カウンセリングは、すでにその時間<br />から始まっています。
-            あなたの言葉を、ゆっくり<br />お待ちしております。
+            書くという行為自体が心の整理を助けてくれる<br />ことがあります。
+            カウンセリングはすでにその時間<br />から始まっています。
+            あなたの言葉をゆっくり<br />お待ちしております。
           </Typography>
         </div>
       </div>

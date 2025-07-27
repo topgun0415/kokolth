@@ -1,7 +1,5 @@
 import React from 'react';
 import './globals.css';
-import { DefaultSeo } from 'next-seo';
-import SEO from '../../next-seo.config';
 import { Toaster } from 'react-hot-toast';
 import GlobalStateManager from '@/providers/GlobalStateManager';
 
@@ -10,6 +8,9 @@ export const metadata = {
   description:
     'ココルスは高齢出産・妊活・妊娠中・高齢育児・夫婦関係の不安に…',
   openGraph: {
+    type: 'website',
+    url: 'https://kokolth.com',
+    siteName: 'Kokolth',
     images: [
       {
         url: 'https://kokolth.com/images/heroImage.jpeg',
@@ -31,7 +32,6 @@ export default function RootLayout({
       <body>
         <GlobalStateManager />
         <Toaster position='top-center' reverseOrder={false} />
-        <DefaultSeo {...SEO} />
         {children}
       </body>
     </html>

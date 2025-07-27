@@ -3,6 +3,10 @@ import './globals.css';
 import { Toaster } from 'react-hot-toast';
 import GlobalStateManager from '@/providers/GlobalStateManager';
 
+export const metadata = {
+  title: 'ココルス',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

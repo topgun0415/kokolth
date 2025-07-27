@@ -30,6 +30,7 @@
     "framer-motion": "^12.5.0",
     "next": "15.2.1",
     "next-auth": "^4.24.11",
+    "next-seo": "^6.8.0",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.3",
     "prisma": "^6.6.0",

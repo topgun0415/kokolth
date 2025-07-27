@@ -1,10 +1,24 @@
 import React from 'react';
 import './globals.css';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
 import { Toaster } from 'react-hot-toast';
 import GlobalStateManager from '@/providers/GlobalStateManager';
 
 export const metadata = {
-  title: 'ココルス',
+  title: '高齢出産・妊活の悩みをメールで解決｜ココルス (Kokolth)',
+  description:
+    'ココルスは高齢出産・妊活・妊娠中・高齢育児・夫婦関係の不安に…',
+  openGraph: {
+    images: [
+      {
+        url: 'https://kokolth.com/images/heroImage.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Kokolth メールカウンセリング OG Image',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -13,10 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='jp'>
+    <html lang='ja'>
       <body>
         <GlobalStateManager />
         <Toaster position='top-center' reverseOrder={false} />
+        <DefaultSeo {...SEO} />
         {children}
       </body>
     </html>

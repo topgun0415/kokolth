@@ -41,9 +41,11 @@ const PaymentSection: React.FC = () => {
       id: 'paypay',
       subtitle: '',
       description: [
-        '方法は友達追加後、LINEのトーク画面より',
+        'LINE公式アカウントを友だち追加後、',
         <br key="br1" />,
-        'ご案内いたします。'
+        'LINEのトークルーム左下「＋」',
+        <br key="br2" />,
+        'から簡単に決済して頂けます。',
       ],
       icon: (
         <div className="flex items-center justify-center">

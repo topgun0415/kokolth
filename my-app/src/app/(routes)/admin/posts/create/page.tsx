@@ -115,6 +115,23 @@ function PostEditor() {
         }
         return false;
       },
+      handleTextInput(view, from, to, text) {
+        const maxLen = 10;
+        const currentLen = view.state.doc.textContent.length;
+        if (currentLen + text.length > maxLen) {
+          return true; // prevent the input
+        }
+        return false; // allow the input
+      },
+      handlePaste(view, event) {
+        const maxLen = 10;
+        const pasteText = event.clipboardData?.getData('text') || '';
+        const currentLen = view.state.doc.textContent.length;
+        if (currentLen + pasteText.length > maxLen) {
+          return true; // prevent paste
+        }
+        return false; // allow paste
+      },
     },
   });
   
@@ -157,6 +174,29 @@ function PostEditor() {
       attributes: {
         class: 'prose max-w-none focus:outline-none',
       },
+      handleTextInput(view, from, to, text) {
+        const maxLen = 300;
+        const currentLen = editor?.getText().trim().length || 0;
+        if (currentLen >= maxLen) {
+          return true;
+        }
+        if (currentLen + text.length > maxLen) {
+          return true;
+        }
+        return false;
+      },
+      handlePaste(view, event) {
+        const maxLen = 300;
+        const pasteText = event.clipboardData?.getData('text') || '';
+        const currentLen = editor?.getText().trim().length || 0;
+        if (currentLen >= maxLen) {
+          return true;
+        }
+        if (currentLen + pasteText.length > maxLen) {
+          return true;
+        }
+        return false;
+      },
     },
   });
 
@@ -173,8 +213,8 @@ function PostEditor() {
       toast.error('内容を入力してください');
       return;
     }
-    if (editor?.getText().trim().length > 1000) {
-      toast.error('内容は1000文字以内で入力してください');
+    if (editor?.getText().trim().length > 300) {
+      toast.error('内容は300文字以内で入力してください');
       return;
     }
 
@@ -361,7 +401,7 @@ function PostEditor() {
           {/* Character Count */}
           <div className="px-4 py-2 border-gray-100 text-right">
             <span className="inline-block px-3 py-1 text-sm text-gray-500 bg-gray-100 rounded-full">
-              {editor?.storage.characterCount?.characters() || 0} 文字
+              {(editor?.getText()?.trim().length || 0)} 文字
             </span>
           </div>
         </div>

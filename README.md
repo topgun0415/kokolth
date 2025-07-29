@@ -7,7 +7,6 @@ KOKOLTHは、LINEメッセージングを通じて匿名オンライン相談サ
 ## 🌟 プロジェクト概要
 
 - **ドメイン**: [www.kokolth.com](https://www.kokolth.com)
-- **本番サイト**: [ココロス](https://kokolth-topgun0415s-projects.vercel.app/)
 - **バージョン**: 0.1.0v 
 - **リリース日**: 2025/07/27
 

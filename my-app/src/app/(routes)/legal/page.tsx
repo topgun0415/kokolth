@@ -6,7 +6,7 @@ const legalInfo: { item: string; content: string }[] = [
   { item: "運営統括責任者", content: "Hisako Ishimatsu" },
   { item: "所在地", content: "福岡県糟屋郡新宮町新宮東3-12-12" },
   { item: "電話番号", content: "080-4280-2050" },
-  { item: "メールアドレス", content: "ishimatsuhisako0923@gmail.com" },
+  { item: "メールアドレス", content: "kokolth.room@gmail.com" },
   { item: "販売URL", content: "https://www.kokolth.com/" },
   {
     item: "販売価格",
